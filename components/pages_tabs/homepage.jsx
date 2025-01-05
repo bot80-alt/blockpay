@@ -1,69 +1,70 @@
 import React from 'react';
-import { View, Text, TextInput, TouchableOpacity, ScrollView, Image, StyleSheet } from 'react-native';
+import { View, Text, TextInput, Image, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-const Homepage = () => {
+const App = () => {
   const navigation = useNavigation();
-  const handleProfile = () => {
-    navigation.navigate("PROFILE");
-  };
+    const handletransactionHistory = () => {
+        navigation.navigate("TRANSACTION_HISTORY");
+      };
   return (
     <ScrollView style={styles.container}>
-      <View style={styles.header}>
+      <View style={styles.searchContainer}>
         <TextInput
-          style={styles.searchBar}
+          style={styles.searchInput}
           placeholder="Pay anyone on crypto"
         />
-        <TouchableOpacity onPress={handleProfile}>
+      </View>
+      <View style={styles.illustrationContainer}>
         <Image
-          style={styles.profileIcon}
           source={require('../../assets/images/homepic 1.png')}
+          style={[styles.illustration, { width: '80%', height: 200 }]}
         />
+      </View>
+      <View style={[styles.iconContainer, { backgroundColor: '#FFFFFF', marginHorizontal: -20, paddingVertical: 20 }]}>
+        <TouchableOpacity style={styles.iconButton}>
+          <Image source={require('../../assets/images/qr-code.png')} style={styles.icon} />
+          <Text style={[styles.iconText, {color: '#1E3A8A'}]}>Scan any Crypto QR code</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.iconButton}>
+          <Image source={require('../../assets/images/contact-book.png')} style={styles.icon} />
+          <Text style={[styles.iconText, {color: '#1E3A8A'}]}>Pay Contacts</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.iconButton}>
+          <Image source={require('../../assets/images/wallet.png')} style={styles.icon} />
+          <Text style={[styles.iconText, {color: '#1E336DFF'}]}>Check Balance</Text>
         </TouchableOpacity>
       </View>
-      <View style={styles.mainActions}>
-        <TouchableOpacity style={styles.actionButton}>
-          <Text>Scan any Crypto QR code</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.actionButton}>
-          <Text>Pay Contacts</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.actionButton}>
-          <Text>Check Balance</Text>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.section}>
+      <View style={styles.sectionContainer}>
         <Text style={styles.sectionTitle}>People</Text>
-        <View style={styles.contacts}>
+        <View style={styles.profileContainer}>
           {Array(6).fill().map((_, index) => (
-            <TouchableOpacity key={index}>
-              <Image
-                style={styles.contactIcon}
-                source={{ uri: 'https://example.com/contact-icon.png' }}
-              />
-            </TouchableOpacity>
+            <Image
+              key={index}
+              source={require('../../assets/images/wallet.png')}
+              style={styles.profileIcon}
+            />
           ))}
         </View>
       </View>
-      <View style={styles.section}>
+      <View style={styles.sectionContainer}>
         <Text style={styles.sectionTitle}>Business</Text>
-        <View style={styles.contacts}>
+        <View style={styles.profileContainer}>
           {Array(6).fill().map((_, index) => (
-            <TouchableOpacity key={index}>
-              <Image
-                style={styles.contactIcon}
-                source={{ uri: 'https://example.com/contact-icon.png' }}
-              />
-            </TouchableOpacity>
+            <Image
+              key={index}
+              source={require('../../assets/images/wallet.png')}
+              style={styles.profileIcon}
+            />
           ))}
         </View>
       </View>
-      <View style={styles.footer}>
-        <TouchableOpacity style={styles.footerButton}>
-          <Text>See Transaction History</Text>
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity style={styles.button}>
+          <Text style={styles.buttonText}>See Transaction History</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.footerButton}>
-          <Text>Check Live Crypto Prices</Text>
+        <TouchableOpacity style={styles.button}>
+          <Text style={styles.buttonText}>Check Live Crypto Prices</Text>
         </TouchableOpacity>
       </View>
     </ScrollView>
@@ -75,63 +76,74 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#1E3A8A',
   },
-  header: {
-    flexDirection: 'row',
+  searchContainer: {
+    padding: 10,
+  },
+  searchInput: {
+    backgroundColor: '#fff',
+    borderRadius: 25,
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+  },
+  illustrationContainer: {
     alignItems: 'center',
-    padding: 16,
+    marginVertical: 20,
   },
-  searchBar: {
-    flex: 1,
-    backgroundColor: '#FFF',
-    borderRadius: 8,
-    padding: 8,
+  illustration: {
+    width: 200,
+    height: 200,
   },
-  profileIcon: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    marginLeft: 8,
-  },
-  mainActions: {
+  iconContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    padding: 16,
+    marginVertical: 20,
   },
-  actionButton: {
-    backgroundColor: '#FFF',
-    padding: 16,
-    borderRadius: 8,
+  iconButton: {
     alignItems: 'center',
   },
-  section: {
-    padding: 16,
+  icon: {
+    width: 50,
+    height: 50,
+  },
+  iconText: {
+    color: '#fff',
+    marginTop: 10,
+    textAlign: 'center',
+  },
+  sectionContainer: {
+    marginVertical: 20,
+    paddingHorizontal: 10,
   },
   sectionTitle: {
-    color: '#FFF',
+    color: '#fff',
     fontSize: 18,
-    marginBottom: 8,
+    marginBottom: 10,
   },
-  contacts: {
+  profileContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
   },
-  contactIcon: {
-    width: 60,
-    height: 60,
-    borderRadius: 30,
-    margin: 8,
+  profileIcon: {
+    width: 50,
+    height: 50,
+    margin: 10,
   },
-  footer: {
-    padding: 16,
+  buttonContainer: {
+    paddingHorizontal: 10,
+    marginVertical: 20,
   },
-  footerButton: {
-    backgroundColor: '#FFF',
-    padding: 16,
-    borderRadius: 8,
+  button: {
+    backgroundColor: '#3B82F6',
+    borderRadius: 25,
+    paddingVertical: 15,
     alignItems: 'center',
-    marginBottom: 8,
+    marginVertical: 10,
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 16,
   },
 });
 
-export default Homepage;
+export default App;

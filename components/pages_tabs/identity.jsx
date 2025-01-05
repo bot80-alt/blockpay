@@ -13,7 +13,7 @@ const BlockPayStep2 = () => {
         <Text style={styles.headerText}>BlockPay in 3 Steps</Text>
         <View style={styles.steps}>
           <View style={styles.step}>
-            <Text style={styles.stepNumber}>1</Text>
+            <Text style={styles.stepNum}>1</Text>
             <Text style={styles.stepText}>Business Details</Text>
           </View>
           <Text style={styles.arrow}>→</Text>
@@ -23,7 +23,7 @@ const BlockPayStep2 = () => {
           </View>
           <Text style={styles.arrow}>→</Text>
           <View style={styles.step}>
-            <Text style={styles.stepNumber}>3</Text>
+            <Text style={styles.stepNum}>3</Text>
             <Text style={styles.stepText}>Crypto Setup</Text>
           </View>
         </View>
@@ -76,6 +76,17 @@ const styles = StyleSheet.create({
     padding: 10,
     width: 50,
     textAlign: 'center',
+  },
+  stepNum: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#fff',
+    backgroundColor: '#59AFFFFF',
+    borderRadius: 50,
+    width: 40,
+    height: 40,
+    textAlign: 'center',
+    lineHeight: 40,
   },
   stepText: {
     marginTop: 5,

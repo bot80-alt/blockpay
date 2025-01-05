@@ -20,7 +20,7 @@ const CryptoSetup = () => {
           <Text style={styles.stepText}>Verify your Identity</Text>
         </View>
         <View style={styles.step}>
-          <Text style={styles.stepNumber}>3</Text>
+          <Text style={styles.stepNum}>3</Text>
           <Text style={styles.stepText}>Crypto Setup</Text>
         </View>
       </View>
@@ -80,7 +80,19 @@ const styles = StyleSheet.create({
     backgroundColor: '#6C63FF',
     borderRadius: 50,
     padding: 10,
+    width:50,
+    textAlign: 'center',
     marginBottom: 5,
+  },
+  stepNum: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#fff',
+    backgroundColor: '#8a2be2',
+    borderRadius: 50,
+    padding: 10,
+    width: 50,
+    textAlign: 'center',
   },
   stepText: {
     fontSize: 12,

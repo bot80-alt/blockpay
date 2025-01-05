@@ -35,11 +35,11 @@ const Signup = () => {
           <Text style={styles.stepText}>Business Details</Text>
         </View>
         <View style={styles.step}>
-          <Text style={styles.stepNumber}>2</Text>
+          <Text style={styles.stepNum}>2</Text>
           <Text style={styles.stepText}>Verify your Identity</Text>
         </View>
         <View style={styles.step}>
-          <Text style={styles.stepNumber}>3</Text>
+          <Text style={styles.stepNum}>3</Text>
           <Text style={styles.stepText}>Crypto Setup</Text>
         </View>
       </View>
@@ -121,6 +121,17 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#fff',
     backgroundColor: '#6200EE',
+    borderRadius: 50,
+    width: 40,
+    height: 40,
+    textAlign: 'center',
+    lineHeight: 40,
+  },
+  stepNum: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#fff',
+    backgroundColor: '#59AFFFFF',
     borderRadius: 50,
     width: 40,
     height: 40,
