@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TextInput, TouchableOpacity, ScrollView, Image, StyleSheet } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, ScrollView, Image, StyleSheet, Linking } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 const Homepage = () => {
@@ -62,7 +62,7 @@ const Homepage = () => {
         <TouchableOpacity style={styles.footerButton}>
           <Text>See Transaction History</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.footerButton}>
+        <TouchableOpacity style={styles.footerButton} onPress={() => Linking.openURL('https://coinmarketcap.com/trending-cryptocurrencies/')}>
           <Text>Check Live Crypto Prices</Text>
         </TouchableOpacity>
       </View>
