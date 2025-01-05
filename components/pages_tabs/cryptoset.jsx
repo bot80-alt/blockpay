@@ -1,12 +1,22 @@
-import React from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import {React,useState} from 'react';
+import DropDownPicker from 'react-native-dropdown-picker';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, Linking } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 const CryptoSetup = () => {
   const navigation = useNavigation();
   const handleEntry = () => {
       navigation.navigate("ENTRY");
-    };
+  };
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState(null);
+  const [items, setItems] = useState([
+    {label: 'Avax', value: 'Avax'},
+    {label: 'USDT', value: 'USDT'},
+    {label: 'LINK', value: 'LINK'},
+    {label:'TUSD', value:'TUSD'},
+    {label:'BCUT', value:'BCUT'}
+  ]);
   return (
     <View style={styles.container}>
       <Text style={styles.header}>BlockPay in 3 Steps</Text>
@@ -34,17 +44,23 @@ const CryptoSetup = () => {
         onChangeText={(text) => {}}
       />
       <Text>Add your Preferred Crypto Coins</Text>
-      <TouchableOpacity style={styles.button}>
-        <Text style={styles.buttonText}>Select your Crypto Coins</Text>
-      </TouchableOpacity>
+      <DropDownPicker
+      placeholder="Select your Crypto Coins"
+      open={open}
+      value={value}
+      items={items}
+      setOpen={setOpen}
+      setValue={setValue}
+      setItems={setItems}
+      onChangeItem={(item) => {
+        if (!items.some(i => i.value === item.value)) {
+          setItems([...items, item]);
+        }
+      }}
+    />
       <Text>Added Crypto Coins</Text>
-      <View style={styles.cryptoIconsContainer}>
-        <Image source={{ uri: 'bitcoin_icon_url' }} style={styles.cryptoIcon} />
-        <Image source={{ uri: 'ethereum_icon_url' }} style={styles.cryptoIcon} />
-        <Image source={{ uri: 'solana_icon_url' }} style={styles.cryptoIcon} />
-      </View>
       <TouchableOpacity>
-        <Text style={styles.link}>Want to Pick Top Coins ? Know More</Text>
+        <Text style={styles.link}>Want to Pick Top Coins ? <Text onPress={() => Linking.openURL('https://coinmarketcap.com/trending-cryptocurrencies/')} style={styles.headlink}>Know More →</Text></Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.finishButton} onPress={handleEntry}>
         <Text style={styles.finishButtonText}>Finish Now</Text>
@@ -145,6 +161,10 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontWeight: 'bold',
   },
+  headlink:{
+    color:"blue",
+    fontWeight:700,
+  }
 });
 
 export default CryptoSetup;
