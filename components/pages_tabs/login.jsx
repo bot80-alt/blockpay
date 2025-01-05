@@ -2,75 +2,25 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-const Signup = () => {
+const Login = () => {
   const navigation = useNavigation();
-  const [businessName, setBusinessName] = useState('');
   const [email, setEmail] = useState('');
-  const [mobileNumber, setMobileNumber] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const [errors, setErrors]=useState({});
 
-  const handleIdentity=()=>{
-    navigation.navigate("IDENTITY");
-  }
-
-  /*const validateForm=()=>{
-    if(!businessName) errors.businessName="Business Name is required";
-    if(!email) errors.email="Email is required";
-    if(!mobileNumber) errors.mobileNumber="Mobile Number is required";
-    if(!password) errors.password="Password is required";
-
-    setErrors(errors);
-
-    return Object.keys(errors).length===0;
-  }*/
+  const handleEntry = () => {
+    navigation.navigate("ENTRY");
+  };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>BlockPay in 3 Steps</Text>
-      <View style={styles.stepsContainer}>
-        <View style={styles.step}>
-          <Text style={styles.stepNumber}>1</Text>
-          <Text style={styles.stepText}>Business Details</Text>
-        </View>
-        <View style={styles.step}>
-          <Text style={styles.stepNumber}>2</Text>
-          <Text style={styles.stepText}>Verify your Identity</Text>
-        </View>
-        <View style={styles.step}>
-          <Text style={styles.stepNumber}>3</Text>
-          <Text style={styles.stepText}>Crypto Setup</Text>
-        </View>
-      </View>
-      <Text style={styles.subHeader}>1. Business Details</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Enter your Business Name"
-        value={businessName}
-        onChangeText={setBusinessName}
-      />
-      {
-        errors.businessName?<Text style={styles.errorText}>{errors.businessName}</Text>:null
-      }
+      <Text style={styles.subHeader}>Login into Blockpay Account</Text>
       <TextInput
         style={styles.input}
         placeholder="Enter your Email Address"
         value={email}
         onChangeText={setEmail}
       />
-      {
-        errors.email?<Text style={styles.errorText}>{errors.email}</Text>:null
-      }
-      <TextInput
-        style={styles.input}
-        placeholder="Enter your Mobile Number"
-        value={mobileNumber}
-        onChangeText={setMobileNumber}
-      />
-      {
-        errors.mobileNumber?<Text style={styles.errorText}>{errors.mobileNumber}</Text>:null
-      }
       <View style={styles.passwordContainer}>
         <TextInput
           style={styles.input}
@@ -79,22 +29,19 @@ const Signup = () => {
           onChangeText={setPassword}
           secureTextEntry={!showPassword}
         />
-        {
-        errors.password?<Text style={styles.errorText}>{errors.password}</Text>:null
-        }
         <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
           <Text style={styles.showPassword}>{showPassword ? 'Hide' : 'Show'}</Text>
         </TouchableOpacity>
       </View>
       <TouchableOpacity 
         style={styles.nextButton}
-        onPress={handleIdentity}
+        onPress={handleEntry}
       >
-        <Text style={styles.nextButtonText}>Next</Text>
+        <Text style={styles.nextButtonText}>Login →</Text>
       </TouchableOpacity>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -163,11 +110,6 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 16,
   },
-  errorText:{
-    color:"red",
-    marginBottom:10,
-  }
 });
 
-
-export default Signup;
+export default Login;

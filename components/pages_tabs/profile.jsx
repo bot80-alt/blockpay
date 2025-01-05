@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
-import { QRCode } from 'react-native-custom-qr-codes-expo';
+
 
 const PaymentPage = () => {
   return (
@@ -15,12 +15,7 @@ const PaymentPage = () => {
       <Text style={styles.info}>Username: {generateUsername('Madhanraj')}</Text>
       <Text style={styles.info}>Wallet Address: XXXXXXX</Text>
       <Text style={styles.info}>UPI ID: {generateUpiId(walletAddress)}</Text>
-      <QRCode
-        content={generateUpiId(walletAddress)} // Generate QR code from UPI ID
-        size={200}
-        logo={{ uri: 'https://example.com/blockpay-logo.png' }} // Optional: Add BlockPay logo in center
-        logoSize={50}
-      />
+      
       <Text style={styles.scanText}>Scan to pay with blockpay</Text>
       <TouchableOpacity style={styles.downloadButton}>
         <Text style={styles.buttonText}>Download QR Code</Text>

@@ -1,7 +1,12 @@
 import React from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 const CryptoSetup = () => {
+  const navigation = useNavigation();
+  const handleEntry = () => {
+      navigation.navigate("ENTRY");
+    };
   return (
     <View style={styles.container}>
       <Text style={styles.header}>BlockPay in 3 Steps</Text>
@@ -41,7 +46,7 @@ const CryptoSetup = () => {
       <TouchableOpacity>
         <Text style={styles.link}>Want to Pick Top Coins ? Know More</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.finishButton}>
+      <TouchableOpacity style={styles.finishButton} onPress={handleEntry}>
         <Text style={styles.finishButtonText}>Finish Now</Text>
       </TouchableOpacity>
     </View>

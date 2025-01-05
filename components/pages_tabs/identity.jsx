@@ -1,7 +1,12 @@
 import React from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 const BlockPayStep2 = () => {
+  const navigation=useNavigation();
+  const handleCrypto=()=>{
+    navigation.navigate("CRYPTO");
+  }
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -32,7 +37,7 @@ const BlockPayStep2 = () => {
         style={styles.input}
         placeholder="Enter your Aadhar/PAN Card Number"
       />
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button} onPress={handleCrypto}>
         <Text style={styles.buttonText}>Next</Text>
       </TouchableOpacity>
     </View>
@@ -108,4 +113,3 @@ const styles = StyleSheet.create({
 });
 
 export default BlockPayStep2;
-export{ BlockPayStep2 }

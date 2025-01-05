@@ -1,7 +1,12 @@
 import React from 'react';
 import { View, Text, TextInput, TouchableOpacity, ScrollView, Image, StyleSheet } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
-const App = () => {
+const Homepage = () => {
+  const navigation = useNavigation();
+  const handleProfile = () => {
+    navigation.navigate("PROFILE");
+  };
   return (
     <ScrollView style={styles.container}>
       <View style={styles.header}>
@@ -9,10 +14,12 @@ const App = () => {
           style={styles.searchBar}
           placeholder="Pay anyone on crypto"
         />
+        <TouchableOpacity onPress={handleProfile}>
         <Image
           style={styles.profileIcon}
           source={require('../../assets/images/homepic 1.png')}
         />
+        </TouchableOpacity>
       </View>
       <View style={styles.mainActions}>
         <TouchableOpacity style={styles.actionButton}>
@@ -127,4 +134,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default App;
+export default Homepage;

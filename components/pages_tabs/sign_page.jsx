@@ -1,36 +1,41 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Image, Button } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { Signup } from './signup';
 
 const SignPageScreen = () => {
     const navigation = useNavigation();
+    const handleSignup = () => {
+        navigation.navigate("SIGNUP");
+      };
+      const handleLogin = () => {
+        navigation.navigate("LOGIN");
+      };
     return (
         <View style={styles.container}>
             <Text style={[styles.headerText, { fontSize: 24 }]}>
-                With Blockpay, Crypto is not just a Currency - it's a lifestyle
+                {`With Blockpay, Crypto is not just a Currency - it's a lifestyle`}
             </Text>
             <Image
                 source={require('../../assets/images/rb_2148298985 1.png')}
                 style={[styles.image, { width: 300, height: 300 }]}
             />
-            <View style={styles.buttonContainer}>
-                <TouchableOpacity style={styles.button}>
-                    <Text style={styles.buttonText}>Merchant</Text>
+            <View style={styles.toggleContainer}>
+                <TouchableOpacity style={[styles.toggleButton, styles.toggleButtonActive]}>
+                    <Text style={styles.toggleButtonText}>Merchant</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.button}>
-                    <Text style={styles.buttonText}>User</Text>
+                <TouchableOpacity style={styles.toggleButton}>
+                    <Text style={styles.toggleButtonText}>User</Text>
                 </TouchableOpacity>
             </View>
             <TouchableOpacity 
                 style={styles.signInButton}
-                onPress={() => navigation.navigate('Signup')}
+                onPress={handleSignup}
             >
                 <Text style={styles.signInText}>Sign up →</Text>
             </TouchableOpacity>
             <TouchableOpacity 
                 style={styles.signUpButton}
-                onPress={() => navigation.navigate('Login')}
+                onPress={handleLogin}
             >
                 <Text style={styles.signUpText}>Login →</Text>
             </TouchableOpacity>
@@ -94,6 +99,34 @@ const styles = StyleSheet.create({
     signUpText: {
         color: '#7B68EE',
         fontSize: 16,
+    },
+    toggleContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        padding: 10,
+        borderRadius: 5,
+        backgroundColor: '#f2f2f2',
+        marginVertical: 10,
+        overflow: 'hidden',
+    },
+    toggleButton: {
+        width: '50%',
+        padding: 10,
+        textAlign: 'center',
+        borderRadius: 5,
+        fontSize: 16,
+        fontWeight: 'bold',
+    },
+    toggleButtonActive: {
+        backgroundColor: '#6A5ACD',
+        color: '#fff',
+        transition: 'all 0.3s ease-in-out',
+    },
+    toggleButtonInactive: {
+        backgroundColor: '#fff',
+        color: '#6A5ACD',
+        transition: 'all 0.3s ease-in-out',
     },
 });
 
