@@ -9,22 +9,11 @@ const Signup = () => {
   const [mobileNumber, setMobileNumber] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const [errors, setErrors]=useState({});
+  const [errors, setErrors] = useState({});
 
-  const handleIdentity=()=>{
-    navigation.navigate("IDENTITY");
-  }
-
-  /*const validateForm=()=>{
-    if(!businessName) errors.businessName="Business Name is required";
-    if(!email) errors.email="Email is required";
-    if(!mobileNumber) errors.mobileNumber="Mobile Number is required";
-    if(!password) errors.password="Password is required";
-
-    setErrors(errors);
-
-    return Object.keys(errors).length===0;
-  }*/
+  const handleIdentity = () => {
+    navigation.navigate("IDENTITY", { businessName, email, mobileNumber, password});
+  };
 
   return (
     <View style={styles.container}>
@@ -49,31 +38,22 @@ const Signup = () => {
         placeholder="Enter your Business Name *"
         value={businessName}
         onChangeText={setBusinessName}
-        required={true}
       />
-      {
-        errors.businessName?<Text style={styles.errorText}>{errors.businessName}</Text>:null
-      }
+      {errors.businessName && <Text style={styles.errorText}>{errors.businessName}</Text>}
       <TextInput
         style={styles.input}
         placeholder="Enter your Email Address"
         value={email}
         onChangeText={setEmail}
-        required={true}
       />
-      {
-        errors.email?<Text style={styles.errorText}>{errors.email}</Text>:null
-      }
+      {errors.email && <Text style={styles.errorText}>{errors.email}</Text>}
       <TextInput
         style={styles.input}
         placeholder="Enter your Mobile Number"
         value={mobileNumber}
         onChangeText={setMobileNumber}
-        required={true}
       />
-      {
-        errors.mobileNumber?<Text style={styles.errorText}>{errors.mobileNumber}</Text>:null
-      }
+      {errors.mobileNumber && <Text style={styles.errorText}>{errors.mobileNumber}</Text>}
       <View style={styles.passwordContainer}>
         <TextInput
           style={styles.input}
@@ -81,16 +61,13 @@ const Signup = () => {
           value={password}
           onChangeText={setPassword}
           secureTextEntry={!showPassword}
-          required={true}
         />
-        {
-        errors.password?<Text style={styles.errorText}>{errors.password}</Text>:null
-        }
+        {errors.password && <Text style={styles.errorText}>{errors.password}</Text>}
         <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
           <Text style={styles.showPassword}>{showPassword ? 'Hide' : 'Show'}</Text>
         </TouchableOpacity>
       </View>
-      <TouchableOpacity 
+      <TouchableOpacity
         style={styles.nextButton}
         onPress={handleIdentity}
         disabled={!businessName || !email || !mobileNumber || !password}
@@ -99,7 +76,7 @@ const Signup = () => {
       </TouchableOpacity>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -179,11 +156,10 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 16,
   },
-  errorText:{
-    color:"red",
-    marginBottom:10,
-  }
+  errorText: {
+    color: 'red',
+    marginBottom: 10,
+  },
 });
-
 
 export default Signup;

@@ -3,7 +3,9 @@ import { DropDownPicker } from 'react-native-dropdown-picker';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, Linking } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-const CryptoSetup = () => {
+const CryptoSetup = ([route]) => {
+  const {businessName,email,mobileNumber,password,govtid,idnumber}=route.params;
+
   const navigation = useNavigation();
   const handleEntry = () => {
       navigation.navigate("ENTRY");

@@ -1,12 +1,15 @@
 import React from 'react';
-import { View, Text, TextInput, Image, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TextInput, Image, ScrollView, TouchableOpacity, StyleSheet, Linking } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 const App = () => {
   const navigation = useNavigation();
-    const handletransactionHistory = () => {
-        navigation.navigate("TRANSACTION_HISTORY");
-      };
+    const handleTransaction = () => {
+        navigation.navigate("TRANSACTION");
+    };
+  const handleProfile=()=>{
+    navigation.navigate("PROFILE");
+  }
   return (
     <ScrollView style={styles.container}>
       <View style={styles.searchContainer}>
@@ -60,14 +63,11 @@ const App = () => {
         </View>
       </View>
       <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={handleTransaction}>
           <Text style={styles.buttonText}>See Transaction History</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={() => Linking.openURL('https://coinmarketcap.com/trending-cryptocurrencies/')}>
           <Text style={styles.buttonText}>Check Live Crypto Prices</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.footerButton} onPress={() => Linking.openURL('https://coinmarketcap.com/trending-cryptocurrencies/')}>
-          <Text>Check Live Crypto Prices</Text>
         </TouchableOpacity>
       </View>
     </ScrollView>

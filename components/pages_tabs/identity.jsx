@@ -1,16 +1,22 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
-const BlockPayStep2 = () => {
-  const navigation=useNavigation();
-  const handleCrypto=()=>{
-    navigation.navigate("CRYPTO");
-  }
+const BlockPayStep2 = ({route}) => {
+  const {businessName, email, mobileNumber, password}=route.params;
+  const navigation = useNavigation();
+
+  const [govtid, setGovtid] = useState('');
+  const [idnumber, setIdnumber] = useState('');
+
+  const handleCrypto = () => {
+    navigation.navigate("CRYPTO",{businessName,email,mobileNumber,password,govtid,idnumber});
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.headerText}>BlockPay in 3 Steps</Text>
+        <Text style={styles.headerText}>BlockPay in 3 Steps - {businessName}</Text>
         <View style={styles.steps}>
           <View style={styles.step}>
             <Text style={styles.stepNum}>1</Text>
@@ -32,12 +38,18 @@ const BlockPayStep2 = () => {
       <TextInput
         style={styles.input}
         placeholder="Enter your Name as per GOVT ID *"
-        required={true}
+        onChangeText={setGovtid}
+        value={govtid}
+        required
       />
       <TextInput
         style={styles.input}
-        placeholder="Enter your Aadhar/PAN Card Number"
-        required={true}
+        placeholder="Enter your Aadhar/PAN Card Number *"
+        maxLength={12} // Adjust for Aadhar or PAN specifics
+        keyboardType="numeric"
+        value={idnumber}
+        onChangeText={setIdnumber}
+        required
       />
       <TouchableOpacity style={styles.button} onPress={handleCrypto}>
         <Text style={styles.buttonText}>Next</Text>
