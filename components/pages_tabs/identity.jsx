@@ -31,11 +31,13 @@ const BlockPayStep2 = () => {
       <Text style={styles.title}>2. Verify your Identity</Text>
       <TextInput
         style={styles.input}
-        placeholder="Enter your Name as per GOVT ID"
+        placeholder="Enter your Name as per GOVT ID *"
+        required={true}
       />
       <TextInput
         style={styles.input}
         placeholder="Enter your Aadhar/PAN Card Number"
+        required={true}
       />
       <TouchableOpacity style={styles.button} onPress={handleCrypto}>
         <Text style={styles.buttonText}>Next</Text>

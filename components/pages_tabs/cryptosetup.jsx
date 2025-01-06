@@ -1,5 +1,5 @@
 import {React,useState} from 'react';
-import DropDownPicker from 'react-native-dropdown-picker';
+import { DropDownPicker } from 'react-native-dropdown-picker';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, Linking } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
