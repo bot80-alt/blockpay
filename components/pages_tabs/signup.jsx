@@ -46,9 +46,10 @@ const Signup = () => {
       <Text style={styles.subHeader}>1. Business Details</Text>
       <TextInput
         style={styles.input}
-        placeholder="Enter your Business Name"
+        placeholder="Enter your Business Name *"
         value={businessName}
         onChangeText={setBusinessName}
+        required={true}
       />
       {
         errors.businessName?<Text style={styles.errorText}>{errors.businessName}</Text>:null
@@ -58,6 +59,7 @@ const Signup = () => {
         placeholder="Enter your Email Address"
         value={email}
         onChangeText={setEmail}
+        required={true}
       />
       {
         errors.email?<Text style={styles.errorText}>{errors.email}</Text>:null
@@ -67,6 +69,7 @@ const Signup = () => {
         placeholder="Enter your Mobile Number"
         value={mobileNumber}
         onChangeText={setMobileNumber}
+        required={true}
       />
       {
         errors.mobileNumber?<Text style={styles.errorText}>{errors.mobileNumber}</Text>:null
@@ -78,6 +81,7 @@ const Signup = () => {
           value={password}
           onChangeText={setPassword}
           secureTextEntry={!showPassword}
+          required={true}
         />
         {
         errors.password?<Text style={styles.errorText}>{errors.password}</Text>:null
@@ -89,6 +93,7 @@ const Signup = () => {
       <TouchableOpacity 
         style={styles.nextButton}
         onPress={handleIdentity}
+        disabled={!businessName || !email || !mobileNumber || !password}
       >
         <Text style={styles.nextButtonText}>Next</Text>
       </TouchableOpacity>

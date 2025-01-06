@@ -1,94 +1,130 @@
 import React from 'react';
-import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { View, Text, Image, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 
-const PaymentPage = () => {
+const ProfilePage = () => {
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.header}>
+        <Text style={styles.profileText}>Profile</Text>
+      </View>
+      <View style={styles.profileContainer}>
         <Image
-          source={{ uri: 'https://example.com/profile-pic.jpg' }} // Replace with actual profile picture URL
-          style={styles.profilePic}
+          source={{ uri: 'https://via.placeholder.com/150' }} // Replace with actual image URL
+          style={styles.profileImage}
         />
-        <Text style={styles.name}>Madhanraj M</Text>
+        <View style={styles.profileDetails}>
+          <Text style={styles.profileName}>Madhanraj M</Text>
+          <Text style={styles.verifiedText}>Verified Merchant</Text>
+        </View>
       </View>
-      <Text style={styles.info}>Username: {generateUsername('Madhanraj')}</Text>
-      <Text style={styles.info}>Wallet Address: XXXXXXX</Text>
-      <Text style={styles.info}>UPI ID: {generateUpiId(walletAddress)}</Text>
-      
-      <Text style={styles.scanText}>Scan to pay with blockpay</Text>
-      <TouchableOpacity style={styles.downloadButton}>
-        <Text style={styles.buttonText}>Download QR Code</Text>
+      <View style={styles.infoContainer}>
+        <Text style={styles.label}>Business Name</Text>
+        <Text style={styles.infoText}>{businessName}</Text>
+      </View>
+      <View style={styles.infoContainer}>
+        <Text style={styles.label}>Username: {username}</Text>
+      </View>
+      <View style={styles.infoContainer}>
+        <Text style={styles.label}>UPI ID</Text>
+        <Text style={styles.infoText}>{upiId}</Text>
+      </View>
+      <View style={styles.cryptoContainer}>
+        <Text style={styles.label}>Select Crypto Coin to Pay</Text>
+        <View style={styles.cryptoIcons}>
+          <Image
+            source={{ uri: 'https://cryptologos.cc/logos/bitcoin-btc-logo.png' }} // Replace with actual image URL
+            style={styles.cryptoIcon}
+          />
+          <Image
+            source={{ uri: 'https://cryptologos.cc/logos/ethereum-eth-logo.png' }} // Replace with actual image URL
+            style={styles.cryptoIcon}
+          />
+          <Image
+            source={{ uri: 'https://cryptologos.cc/logos/solana-sol-logo.png' }} // Replace with actual image URL
+            style={styles.cryptoIcon}
+          />
+          <Image
+            source={{ uri: 'https://cryptologos.cc/logos/solana-sol-logo.png' }} // Replace with actual image URL
+            style={styles.cryptoIcon}
+          />
+        </View>
+      </View>
+      <TouchableOpacity style={styles.payButton}>
+        <Text style={styles.payButtonText}>Pay Now</Text>
       </TouchableOpacity>
-      <View style={styles.bottomButtons}>
-        <TouchableOpacity style={styles.bottomButton}>
-          <Text style={styles.bottomButtonText}>Open Scanner</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.bottomButton}>
-          <Text style={styles.bottomButtonText}>Share QR Code</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: 'center',
+    flexGrow: 1,
     padding: 20,
     backgroundColor: '#f5f5f5',
   },
   header: {
+    marginBottom: 20,
+  },
+  profileText: {
+    fontSize: 32,
+    fontWeight: 'bold',
+  },
+  profileContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 20,
   },
-  profilePic: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
-    marginRight: 10,
+  profileImage: {
+    width: 80,
+    height: 80,
+    borderRadius: 40,
+    marginRight: 20,
   },
-  name: {
-    fontSize: 20,
+  profileDetails: {
+    flexDirection: 'column',
+  },
+  profileName: {
+    fontSize: 24,
     fontWeight: 'bold',
   },
-  info: {
+  verifiedText: {
     fontSize: 16,
-    marginVertical: 5,
+    color: 'green',
   },
-  scanText: {
-    marginVertical: 20,
+  infoContainer: {
+    marginBottom: 20,
+  },
+  label: {
     fontSize: 16,
+    color: '#888',
   },
-  downloadButton: {
-    backgroundColor: '#007bff',
-    padding: 10,
-    borderRadius: 5,
-    marginVertical: 20,
+  infoText: {
+    fontSize: 18,
+    fontWeight: 'bold',
   },
-  buttonText: {
-    color: '#fff',
-    fontSize: 16,
+  cryptoContainer: {
+    marginBottom: 20,
   },
-  bottomButtons: {
+  cryptoIcons: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    width: '100%',
+    marginTop: 10,
   },
-  bottomButton: {
-    flex: 1,
+  cryptoIcon: {
+    width: 50,
+    height: 50,
+  },
+  payButton: {
     backgroundColor: '#007bff',
-    padding: 10,
+    paddingVertical: 15,
     borderRadius: 5,
-    marginHorizontal: 5,
+    alignItems: 'center',
   },
-  bottomButtonText: {
+  payButtonText: {
     color: '#fff',
-    textAlign: 'center',
-    fontSize: 16,
+    fontSize: 18,
+    fontWeight: 'bold',
   },
 });
 
-export default PaymentPage;
+export default ProfilePage;

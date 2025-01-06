@@ -1,9 +1,5 @@
 import React from 'react';
-<<<<<<< HEAD
 import { View, Text, TextInput, Image, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
-=======
-import { View, Text, TextInput, TouchableOpacity, ScrollView, Image, StyleSheet, Linking } from 'react-native';
->>>>>>> f943190689f7ebf5ea7f7124ecc9db18dcbfff0e
 import { useNavigation } from '@react-navigation/native';
 
 const App = () => {
@@ -67,13 +63,11 @@ const App = () => {
         <TouchableOpacity style={styles.button}>
           <Text style={styles.buttonText}>See Transaction History</Text>
         </TouchableOpacity>
-<<<<<<< HEAD
         <TouchableOpacity style={styles.button}>
           <Text style={styles.buttonText}>Check Live Crypto Prices</Text>
-=======
+        </TouchableOpacity>
         <TouchableOpacity style={styles.footerButton} onPress={() => Linking.openURL('https://coinmarketcap.com/trending-cryptocurrencies/')}>
           <Text>Check Live Crypto Prices</Text>
->>>>>>> f943190689f7ebf5ea7f7124ecc9db18dcbfff0e
         </TouchableOpacity>
       </View>
     </ScrollView>

@@ -2,9 +2,9 @@ import SignPageScreen from '@/components/pages_tabs/sign_page';
 import Signup from '@/components/pages_tabs/signup';
 import Login from '@/components/pages_tabs/login';
 import BlockPayStep2 from '@/components/pages_tabs/identity';
-import CryptoSetup from '@/components/pages_tabs/cryptoset';
+import CryptoSetup from '@/components/pages_tabs/cryptosetup';
 import Homepage from '@/components/pages_tabs/homepage';
-import PaymentPage from '@/components/pages_tabs/profile';
+import PaymentPage from '@/components/pages_tabs/qrpage';
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from 'react';
