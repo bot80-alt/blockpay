@@ -68,9 +68,28 @@ const Signup = () => {
         </TouchableOpacity>
       </View>
       <TouchableOpacity
-        style={styles.nextButton}
-        onPress={handleIdentity}
-        disabled={!businessName || !email || !mobileNumber || !password}
+        style={[styles.nextButton, {
+          position: 'absolute',
+          bottom: 20,
+          left: 20,
+          right: 20,
+          borderRadius: 25,
+          shadowColor: '#000',
+          shadowOffset: {
+            width: 0,
+            height: 2,
+          },
+          shadowOpacity: 0.25,
+          shadowRadius: 3.84,
+          elevation: 5
+        }]}
+        onPress={() => {
+          if (!businessName || !email || !mobileNumber || !password) {
+            alert('Please fill all the required fields');
+          } else {
+            handleIdentity();
+          }
+        }}
       >
         <Text style={styles.nextButtonText}>Next</Text>
       </TouchableOpacity>

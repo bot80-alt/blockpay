@@ -51,7 +51,30 @@ const BlockPayStep2 = ({route}) => {
         onChangeText={setIdnumber}
         required
       />
-      <TouchableOpacity style={styles.button} onPress={handleCrypto}>
+      <TouchableOpacity 
+        style={[styles.button, {
+          position: 'absolute',
+          bottom: 20,
+          left: 20,
+          right: 20,
+          borderRadius: 25,
+          shadowColor: '#000',
+          shadowOffset: {
+            width: 0,
+            height: 2,
+          },
+          shadowOpacity: 0.25,
+          shadowRadius: 3.84,
+          elevation: 5
+        }]} 
+        onPress={() => {
+          if (!govtid || !idnumber) {
+            alert('Please fill all the required fields');
+          } else {
+            handleCrypto();
+          }
+        }}
+      >
         <Text style={styles.buttonText}>Next</Text>
       </TouchableOpacity>
     </View>
