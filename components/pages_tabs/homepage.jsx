@@ -9,7 +9,10 @@ const App = () => {
     };
   const handleProfile=()=>{
     navigation.navigate("PROFILE");
-  }
+  };
+  const handleQr=()=>{
+    navigation.navigate("QR");
+  };
   return (
     <ScrollView style={styles.container}>
       <View style={styles.searchContainer}>
@@ -25,7 +28,7 @@ const App = () => {
         />
       </View>
       <View style={[styles.iconContainer, { backgroundColor: '#FFFFFF', marginHorizontal: -20, paddingVertical: 20 }]}>
-        <TouchableOpacity style={styles.iconButton}>
+        <TouchableOpacity style={styles.iconButton} onPress={handleQr}>
           <Image source={require('../../assets/images/qr-code.png')} style={styles.icon} />
           <Text style={[styles.iconText, {color: '#1E3A8A'}]}>Scan any Crypto QR code</Text>
         </TouchableOpacity>
