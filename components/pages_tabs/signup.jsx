@@ -16,14 +16,14 @@ const Signup = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { alignItems: 'center', justifyContent: 'flex-start', marginTop: 40 }]}>
       <Text style={styles.header}>BlockPay in 3 Steps</Text>
       <View style={styles.stepsContainer}>
-        <View style={styles.step}>
+        <View style={[styles.step, {marginRight: 20}]}>
           <Text style={styles.stepNumber}>1</Text>
           <Text style={styles.stepText}>Business Details</Text>
         </View>
-        <View style={styles.step}>
+        <View style={[styles.step, {marginRight: 20}]}>
           <Text style={styles.stepNum}>2</Text>
           <Text style={styles.stepText}>Verify your Identity</Text>
         </View>
@@ -34,29 +34,29 @@ const Signup = () => {
       </View>
       <Text style={styles.subHeader}>1. Business Details</Text>
       <TextInput
-        style={styles.input}
+        style={[styles.input, { width: '100%' }]}
         placeholder="Enter your Business Name *"
         value={businessName}
         onChangeText={setBusinessName}
       />
       {errors.businessName && <Text style={styles.errorText}>{errors.businessName}</Text>}
       <TextInput
-        style={styles.input}
+        style={[styles.input, { width: '100%' }]}
         placeholder="Enter your Email Address"
         value={email}
         onChangeText={setEmail}
       />
       {errors.email && <Text style={styles.errorText}>{errors.email}</Text>}
       <TextInput
-        style={styles.input}
+        style={[styles.input, { width: '100%' }]}
         placeholder="Enter your Mobile Number"
         value={mobileNumber}
         onChangeText={setMobileNumber}
       />
       {errors.mobileNumber && <Text style={styles.errorText}>{errors.mobileNumber}</Text>}
-      <View style={styles.passwordContainer}>
+      <View style={[styles.passwordContainer, { width: '80%' }]}>
         <TextInput
-          style={styles.input}
+          style={[styles.input, { width: '100%' }]}
           placeholder="Enter your Password"
           value={password}
           onChangeText={setPassword}

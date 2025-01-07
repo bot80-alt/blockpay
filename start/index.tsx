@@ -2,7 +2,7 @@ import SignPageScreen from '@/components/pages_tabs/sign_page';
 import Signup from '@/components/pages_tabs/signup';
 import Login from '@/components/pages_tabs/login';
 import BlockPayStep2 from '@/components/pages_tabs/identity';
-import CryptoSetup from '@/components/pages_tabs/crypto';
+import CryptoSetup from '@/components/pages_tabs/cryptosetup';
 import Homepage from '@/components/pages_tabs/homepage';
 import PaymentPage from '@/components/pages_tabs/qrpage';
 import TransactionScreen from '@/components/pages_tabs/confirmation';
@@ -31,9 +31,9 @@ export default function TabOneScreen() {
         <Stack.Screen name={"ENTRY"} component={Homepage}/>
         <Stack.Screen name={"PROFILE"} component={PaymentPage}/>
       </Stack.Navigator>
-    </SafeAreaView>
-  )
-}
+    </SafeAreaView> 
+  );
+};
 
 const styles = StyleSheet.create({
   container: {

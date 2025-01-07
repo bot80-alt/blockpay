@@ -1,7 +1,11 @@
+<<<<<<< HEAD
 import React, {useState} from 'react';
+=======
+import React,{useState} from 'react';
+>>>>>>> c0b3172120bf5752fe69469af049dad96c705c09
 import DropDownPicker from 'react-native-dropdown-picker';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, Linking } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 const CryptoSetup = ({route}) => {
   const {businessName,email,mobileNumber,password,govtid,idnumber}=route.params;
@@ -20,7 +24,7 @@ const CryptoSetup = ({route}) => {
     {label:'BCUT', value:'BCUT'}
   ]);
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { marginTop: 40 }]}>
       <Text style={styles.header}>BlockPay in 3 Steps</Text>
       <View style={styles.stepsContainer}>
         <View style={styles.step}>
