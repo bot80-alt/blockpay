@@ -17,6 +17,7 @@ const App = () => {
           style={styles.searchInput}
           placeholder="Pay anyone on crypto"
         />
+        <Image source={require('../../assets/images/facebook-profile-picture-affects-chances-of-gettin_fr3n.1200.webp')} style={styles.TopProfile}/>
       </View>
       <View style={styles.illustrationContainer}>
         <Image
@@ -25,15 +26,15 @@ const App = () => {
         />
       </View>
       <View style={[styles.iconContainer, { backgroundColor: '#FFFFFF', marginHorizontal: -20, paddingVertical: 20 }]}>
-        <TouchableOpacity style={styles.iconButton}>
+        <TouchableOpacity style={styles.QRiconButton}>
           <Image source={require('../../assets/images/qr-code.png')} style={styles.icon} />
-          <Text style={[styles.iconText, {color: '#1E3A8A'}]}>Scan any Crypto QR code</Text>
+          <Text style={[styles.iconText, {color: '#4159fa'}]}>Scan any Crypto QR code</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.iconButton}>
+        <TouchableOpacity style={styles.bookiconButton}>
           <Image source={require('../../assets/images/contact-book.png')} style={styles.icon} />
-          <Text style={[styles.iconText, {color: '#1E3A8A'}]}>Pay Contacts</Text>
+          <Text style={[styles.iconText, {color: '#4159fa'}]}>Pay Contacts</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.iconButton}>
+        <TouchableOpacity style={styles.walleticonButton}>
           <Image source={require('../../assets/images/wallet.png')} style={styles.icon} />
           <Text style={[styles.iconText, {color: '#1E336DFF'}]}>Check Balance</Text>
         </TouchableOpacity>
@@ -41,10 +42,10 @@ const App = () => {
       <View style={styles.sectionContainer}>
         <Text style={styles.sectionTitle}>People</Text>
         <View style={styles.profileContainer}>
-          {Array(6).fill().map((_, index) => (
+          {Array(4).fill().map((_, index) => (
             <Image
               key={index}
-              source={require('../../assets/images/wallet.png')}
+              source={require('../../assets/images/facebook-profile-picture-affects-chances-of-gettin_fr3n.1200.webp')}
               style={styles.profileIcon}
             />
           ))}
@@ -53,15 +54,16 @@ const App = () => {
       <View style={styles.sectionContainer}>
         <Text style={styles.sectionTitle}>Business</Text>
         <View style={styles.profileContainer}>
-          {Array(6).fill().map((_, index) => (
+          {Array(8).fill().map((_, index) => (
             <Image
               key={index}
-              source={require('../../assets/images/wallet.png')}
+              source={require('../../assets/images/facebook-profile-picture-affects-chances-of-gettin_fr3n.1200.webp')}
               style={styles.profileIcon}
             />
           ))}
         </View>
       </View>
+      <Text style={styles.manage}>Manage Your Money</Text>
       <View style={styles.buttonContainer}>
         <TouchableOpacity style={styles.button} onPress={handleTransaction}>
           <Text style={styles.buttonText}>See Transaction History</Text>
@@ -77,10 +79,19 @@ const App = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#1E3A8A',
+    backgroundColor: '#4159fa',
+  },
+  TopProfile:{
+    width: 40,
+    height: 40,
+
+    borderRadius:50,
   },
   searchContainer: {
     padding: 10,
+    width: '60%',
+    // alignSelf: 'center',
+    flexDirection: 'row',
   },
   searchInput: {
     backgroundColor: '#fff',
@@ -118,6 +129,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   sectionTitle: {
+    paddingLeft: 10,
     color: '#fff',
     fontSize: 18,
     marginBottom: 10,
@@ -131,20 +143,26 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
     margin: 10,
+    borderRadius:50,
   },
   buttonContainer: {
     paddingHorizontal: 10,
     marginVertical: 20,
   },
+  manage: {
+    fontSize: 18,
+    color: '#fff',
+    paddingLeft: 10,
+  },
   button: {
-    backgroundColor: '#3B82F6',
+    backgroundColor: '#fff',
     borderRadius: 25,
     paddingVertical: 15,
     alignItems: 'center',
     marginVertical: 10,
   },
   buttonText: {
-    color: '#fff',
+    color: '#4159fa',
     fontSize: 16,
   },
 });
