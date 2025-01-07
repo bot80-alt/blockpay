@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet , SafeAreaView} from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 
 const BlockPayStep2 = ({route}) => {
@@ -10,13 +10,13 @@ const BlockPayStep2 = ({route}) => {
   const [idnumber, setIdnumber] = useState('');
 
   const handleCrypto = () => {
-    navigation.navigate("CRYPTO",{businessName,email,mobileNumber,password,govtid,idnumber});
+    navigation.navigate("CRYPTO");
   };
 
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.headerText}>BlockPay in 3 Steps - {businessName}</Text>
+        <Text style={styles.headerText}>BlockPay in 3 Steps</Text>
         <View style={styles.steps}>
           <View style={styles.step}>
             <Text style={styles.stepNum}>1</Text>
@@ -84,8 +84,11 @@ const BlockPayStep2 = ({route}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
+    paddingTop:50,
+    paddingLeft:20,
+    paddingRight:20,
     backgroundColor: '#fff',
+    paddingBottom:20,
   },
   header: {
     alignItems: 'center',

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
-import { Camera } from 'expo-camera';
+//import { Camera } from 'expo-camera';
 
 const QRPage = () => {
   const [hasPermission, setHasPermission] = useState(null);

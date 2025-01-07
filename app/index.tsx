@@ -30,11 +30,10 @@ export default function TabOneScreen() {
         <Stack.Screen name={"SIGNUP"} component={Signup} />
         <Stack.Screen name={"LOGIN"} component={Login}/>
         <Stack.Screen name={"IDENTITY"} component={BlockPayStep2}/>
-        <Stack.Screen name={"CRYPTO"} component={CryptoSetup} />
+        <Stack.Screen name={"CRYPTO"} component={CryptoSetup}/>
         <Stack.Screen name={"ENTRY"} component={Homepage}/>
         <Stack.Screen name={"PROFILE"} component={PaymentPage}/>
         <Stack.Screen name={"TRANSACTION"} component={TransactionHistory}/>
-
       </Stack.Navigator>
     </SafeAreaView>
   )

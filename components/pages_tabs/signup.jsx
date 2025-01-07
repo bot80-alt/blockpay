@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, SafeAreaView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 const Signup = () => {
@@ -16,7 +16,8 @@ const Signup = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
+       <View style={styles.container}>
       <Text style={styles.header}>BlockPay in 3 Steps</Text>
       <View style={styles.stepsContainer}>
         <View style={styles.step}>
@@ -35,7 +36,7 @@ const Signup = () => {
       <Text style={styles.subHeader}>1. Business Details</Text>
       <TextInput
         style={styles.input}
-        placeholder="Enter your Business Name *"
+        placeholder="Enter your Business Name"
         value={businessName}
         onChangeText={setBusinessName}
       />
@@ -50,6 +51,7 @@ const Signup = () => {
       <TextInput
         style={styles.input}
         placeholder="Enter your Mobile Number"
+        keyboardType="numeric"
         value={mobileNumber}
         onChangeText={setMobileNumber}
       />
@@ -94,13 +96,15 @@ const Signup = () => {
         <Text style={styles.nextButtonText}>Next</Text>
       </TouchableOpacity>
     </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
+    paddingTop:25,
+    padding:12,
     backgroundColor: '#fff',
   },
   header: {
@@ -108,6 +112,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     marginBottom: 20,
+    marginTop:20,
   },
   stepsContainer: {
     flexDirection: 'row',
