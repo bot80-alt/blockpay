@@ -1,8 +1,8 @@
-<<<<<<< HEAD
-import React, {useState} from 'react';
-=======
+// <<<<<<< HEAD
+// import React, {useState} from 'react';
+// =======
 import React,{useState} from 'react';
->>>>>>> c0b3172120bf5752fe69469af049dad96c705c09
+// >>>>>>> c0b3172120bf5752fe69469af049dad96c705c09
 import DropDownPicker from 'react-native-dropdown-picker';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, Linking } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
