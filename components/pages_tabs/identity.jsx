@@ -46,7 +46,6 @@ const BlockPayStep2 = ({route}) => {
         style={[styles.input, { marginTop: 20 }]}
         placeholder="Enter your Aadhar/PAN Card Number *"
         maxLength={12} // Adjust for Aadhar or PAN specifics
-        keyboardType="numeric"
         value={idnumber}
         onChangeText={setIdnumber}
         required

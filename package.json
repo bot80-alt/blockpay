@@ -18,6 +18,7 @@
     "@expo/vector-icons": "^14.0.2",
     "@react-navigation/bottom-tabs": "^7.2.0",
     "@react-navigation/native": "^7.0.14",
+    "@react-navigation/native-stack": "^7.2.0",
     "expo": "~52.0.23",
     "expo-blur": "~14.0.1",
     "expo-camera": "^16.0.10",
@@ -41,7 +42,8 @@
     "react-native-screens": "~4.4.0",
     "react-native-toggle-element": "^2.1.1",
     "react-native-web": "~0.19.13",
-    "react-native-webview": "13.12.5"
+    "react-native-webview": "13.12.5",
+    "react-navigation": "^5.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",

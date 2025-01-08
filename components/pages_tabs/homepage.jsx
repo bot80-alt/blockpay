@@ -13,6 +13,9 @@ const App = () => {
   const handleQr=()=>{
     navigation.navigate("QR");
   };
+  const handleBalance=()=>{
+    navigation.navigate("BALANCE");
+  };
   return (
     <ScrollView style={styles.container}>
       <View style={styles.topcontainer}>
@@ -21,7 +24,9 @@ const App = () => {
             style={styles.searchInput}
             placeholder="Pay anyone on crypto"
           />
+          <TouchableOpacity onPress={handleProfile}>
           <Image source={require('../../assets/images/facebook-profile-picture-affects-chances-of-gettin_fr3n.1200.webp')} style={styles.TopProfile}/>
+          </TouchableOpacity>
         </View>
         <View style={styles.illustrationContainer}>
           <Image
@@ -39,8 +44,8 @@ const App = () => {
           <Image source={require('../../assets/images/contact-book.png')} style={styles.icon} />
           <Text style={[styles.iconText, {color: '#4159fa'}]}>Pay Contacts</Text>
         </TouchableOpacity> */}
-        <TouchableOpacity style={styles.walleticonButton}>
-          <Image source={require('../../assets/images/wallet.png')} style={styles.icon} />
+        <TouchableOpacity style={styles.walleticonButton}  onPress={handleBalance}>
+          <Image source={require('../../assets/images/wallet.png')} style={styles.icon}/>
           <Text style={[styles.iconText, {color: '#4159fa'}]}>Check Balance</Text>
         </TouchableOpacity>
       </View>
