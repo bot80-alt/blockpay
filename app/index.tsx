@@ -5,18 +5,21 @@ import BlockPayStep2 from '@/components/pages_tabs/identity';
 import CryptoSetup from '@/components/pages_tabs/cryptosetup';
 import Homepage from '@/components/pages_tabs/homepage';
 import ProfilePage from '@/components/pages_tabs/profile';
+<<<<<<< HEAD
 import PaymentPage from '@/components/pages_tabs/qrpage';
 import Checkbalance from '@/components/pages_tabs/checkbalance';
+=======
+import UserSignup from '@/components/pages_tabs/usersignup';
+>>>>>>> e26af32e18b242835d3bff65299c1ef8d5cd723c
 import TransactionHistory from '@/components/pages_tabs/transaction_history';
 import TransferScreen from '@/components/pages_tabs/transfer';
 import TransactionScreen from '@/components/pages_tabs/confirmation';
-import QrPage from '@/components/pages_tabs/qrpage';
+//import QrPage from '@/components/pages_tabs/qrpage';
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, ScrollView, SafeAreaView } from 'react-native';
 import {Link} from 'expo-router';
-
 
 const Stack = createNativeStackNavigator();
 
@@ -32,13 +35,17 @@ export default function TabOneScreen() {
         <Stack.Screen name={"SIGNUP"} component={Signup} />
         <Stack.Screen name={"LOGIN"} component={Login}/>
         <Stack.Screen name={"IDENTITY"} component={BlockPayStep2}/>
-        <Stack.Screen name={"CRYPTO"} component={CryptoSetup} />
+        <Stack.Screen name={"CRYPTO"} component={CryptoSetup}/>
         <Stack.Screen name={"ENTRY"} component={Homepage}/>
         <Stack.Screen name={"PROFILE"} component={ProfilePage}/>
+<<<<<<< HEAD
         <Stack.Screen name={"BALANCE"} component={Checkbalance}/>
+=======
+>>>>>>> e26af32e18b242835d3bff65299c1ef8d5cd723c
         <Stack.Screen name={"TRANSACTION"} component={TransactionHistory}/>
-        <Stack.Screen name={"QR"} component={QrPage}/>
-
+        <Stack.Screen name={"USERSIGNUP"} component={UserSignup}/>
+        <Stack.Screen name={"TRANSFER"} component={TransferScreen}/>
+        <Stack.Screen name={"CONFIRMATION"} component={TransactionScreen}/>
       </Stack.Navigator>
     </SafeAreaView>
   )

@@ -3,7 +3,6 @@ import { View, Text, Image, TouchableOpacity, StyleSheet, ScrollView } from 'rea
 import { useNavigation } from '@react-navigation/native';
 
 const ProfilePage = () => {
-  const navigation = useNavigation();
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.header}>
@@ -24,7 +23,7 @@ const ProfilePage = () => {
         <Text style={styles.infoText}></Text>
       </View>
       <View style={styles.infoContainer}>
-        <Text style={styles.label}>Username </Text>
+        <Text style={styles.label}>Username: {username}</Text>
       </View>
       <View style={styles.infoContainer}>
         <Text style={styles.label}>UPI ID</Text>
@@ -51,7 +50,7 @@ const ProfilePage = () => {
           />
         </View>
       </View>
-      <TouchableOpacity style={styles.payButton}>
+      <TouchableOpacity style={styles.payButton} onPress={handleTransfer}>
         <Text style={styles.payButtonText}>Pay Now</Text>
       </TouchableOpacity>
     </ScrollView>

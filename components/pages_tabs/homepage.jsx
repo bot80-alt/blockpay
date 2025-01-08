@@ -4,9 +4,9 @@ import { useNavigation } from '@react-navigation/native';
 
 const App = () => {
   const navigation = useNavigation();
-    const handleTransaction = () => {
-        navigation.navigate("TRANSACTION");
-    };
+  const handleTransaction = () => {
+      navigation.navigate("TRANSACTION");
+  };
   const handleProfile=()=>{
     navigation.navigate("PROFILE");
   };

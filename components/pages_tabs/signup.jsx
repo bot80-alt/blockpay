@@ -183,7 +183,11 @@
 
 // export default Signup;
 import React, { useState } from 'react';
+<<<<<<< HEAD
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+=======
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, SafeAreaView } from 'react-native';
+>>>>>>> e26af32e18b242835d3bff65299c1ef8d5cd723c
 import { useNavigation } from '@react-navigation/native';
 
 const Signup = () => {
@@ -220,9 +224,45 @@ const Signup = () => {
             <Text style={styles.stepText}>Crypto Setup</Text>
           </View>
         </View>
+<<<<<<< HEAD
 
         <Text style={styles.subHeader}>Step 1: Business Details</Text>
 
+=======
+        <View style={[styles.step, {marginRight: 20}]}>
+          <Text style={styles.stepNum}>2</Text>
+          <Text style={styles.stepText}>Verify your Identity</Text>
+        </View>
+        <View style={styles.step}>
+          <Text style={styles.stepNum}>3</Text>
+          <Text style={styles.stepText}>Crypto Setup</Text>
+        </View>
+      </View>
+      <Text style={styles.subHeader}>1. Business Details</Text>
+      <TextInput
+        style={[styles.input, { width: '100%' }]}
+        placeholder="Enter your Business Name *"
+        value={businessName}
+        onChangeText={setBusinessName}
+      />
+      {errors.businessName && <Text style={styles.errorText}>{errors.businessName}</Text>}
+      <TextInput
+        style={[styles.input, { width: '100%' }]}
+        placeholder="Enter your Email Address"
+        value={email}
+        onChangeText={setEmail}
+      />
+      {errors.email && <Text style={styles.errorText}>{errors.email}</Text>}
+      <TextInput
+        style={[styles.input, { width: '100%' }]}
+        placeholder="Enter your Mobile Number"
+        keyboardType="numeric"
+        value={mobileNumber}
+        onChangeText={setMobileNumber}
+      />
+      {errors.mobileNumber && <Text style={styles.errorText}>{errors.mobileNumber}</Text>}
+      <View style={[styles.passwordContainer, { width: '80%' }]}>
+>>>>>>> e26af32e18b242835d3bff65299c1ef8d5cd723c
         <TextInput
           style={styles.input}
           placeholder="Business Name *"
@@ -286,8 +326,13 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
+<<<<<<< HEAD
     justifyContent: 'center',
     paddingHorizontal: 20,
+=======
+    paddingTop:20,
+    padding:20,
+>>>>>>> e26af32e18b242835d3bff65299c1ef8d5cd723c
     backgroundColor: '#fff',
     borderRadius: 10,
     elevation: 3,
@@ -298,6 +343,7 @@ const styles = StyleSheet.create({
     fontSize: 26,
     fontWeight: 'bold',
     textAlign: 'center',
+<<<<<<< HEAD
     marginBottom: 30,
     color: '#333',
   },
@@ -306,6 +352,10 @@ const styles = StyleSheet.create({
   },
   activeText: {
     color:'#fff',
+=======
+    marginBottom: 20,
+    marginTop:20,
+>>>>>>> e26af32e18b242835d3bff65299c1ef8d5cd723c
   },
   stepsContainer: {
     flexDirection: 'row',

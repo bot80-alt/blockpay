@@ -45,13 +45,25 @@ const Login = () => {
           />
         </TouchableOpacity>
       </View>
-
-      <TouchableOpacity style={styles.forgotPasswordButton}>
-        <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity style={styles.nextButton} onPress={handleEntry}>
-        <Text style={styles.nextButtonText}>Login</Text>
+      <TouchableOpacity 
+        style={[styles.nextButton, {
+          position: 'absolute',
+          bottom: 20,
+          left: 20,
+          right: 20,
+          borderRadius: 25,
+          shadowColor: '#000',
+          shadowOffset: {
+            width: 0,
+            height: 2,
+          },
+          shadowOpacity: 0.25,
+          shadowRadius: 3.84,
+          elevation: 5
+        }]}
+        onPress={handleEntry}
+      >
+        <Text style={styles.nextButtonText}>Login →</Text>
       </TouchableOpacity>
 
       <View style={styles.footerContainer}>
