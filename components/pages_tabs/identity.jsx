@@ -10,14 +10,14 @@ const BlockPayStep2 = ({route}) => {
   const [idnumber, setIdnumber] = useState('');
 
   const handleCrypto = () => {
-    navigation.navigate("CRYPTO");
+    navigation.navigate("CRYPTO",{businessName,email,mobileNumber,password,govtid,idnumber});
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
+    <View style={[styles.container, { marginTop: 40 }]}>
+      <View style={[styles.header, { marginTop: 20 }]}>
         <Text style={styles.headerText}>BlockPay in 3 Steps</Text>
-        <View style={styles.steps}>
+        <View style={[styles.steps, { marginTop: 20 }]}>
           <View style={styles.step}>
             <Text style={styles.stepNum}>1</Text>
             <Text style={styles.stepText}>Business Details</Text>
@@ -34,16 +34,16 @@ const BlockPayStep2 = ({route}) => {
           </View>
         </View>
       </View>
-      <Text style={styles.title}>2. Verify your Identity</Text>
+      <Text style={[styles.title, { marginTop: 30 }]}>2. Verify your Identity</Text>
       <TextInput
-        style={styles.input}
+        style={[styles.input, { marginTop: 20 }]}
         placeholder="Enter your Name as per GOVT ID *"
         onChangeText={setGovtid}
         value={govtid}
         required
       />
       <TextInput
-        style={styles.input}
+        style={[styles.input, { marginTop: 20 }]}
         placeholder="Enter your Aadhar/PAN Card Number *"
         maxLength={12} // Adjust for Aadhar or PAN specifics
         keyboardType="numeric"
@@ -84,7 +84,7 @@ const BlockPayStep2 = ({route}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop:50,
+    paddingTop:30,
     paddingLeft:20,
     paddingRight:20,
     backgroundColor: '#fff',
