@@ -15,39 +15,44 @@ const App = () => {
   };
   return (
     <ScrollView style={styles.container}>
-      <View style={styles.searchContainer}>
-        <TextInput
-          style={styles.searchInput}
-          placeholder="Pay anyone on crypto"
-        />
-      </View>
-      <View style={styles.illustrationContainer}>
-        <Image
-          source={require('../../assets/images/homepic 1.png')}
-          style={[styles.illustration, { width: '80%', height: 200 }]}
-        />
+      <View style={styles.topcontainer}>
+        <View style={styles.searchContainer}>
+          <TextInput
+            style={styles.searchInput}
+            placeholder="Pay anyone on crypto"
+          />
+          <Image source={require('../../assets/images/facebook-profile-picture-affects-chances-of-gettin_fr3n.1200.webp')} style={styles.TopProfile}/>
+        </View>
+        <View style={styles.illustrationContainer}>
+          <Image
+            source={require('../../assets/images/homepic 1.png')}
+            style={[styles.illustration, { width: '80%', height: 200 }]}
+          />
+        </View>
       </View>
       <View style={[styles.iconContainer, { backgroundColor: '#FFFFFF', marginHorizontal: -20, paddingVertical: 20 }]}>
-        <TouchableOpacity style={styles.iconButton} onPress={handleQr}>
+        <TouchableOpacity style={styles.iconButton}>
           <Image source={require('../../assets/images/qr-code.png')} style={styles.icon} />
-          <Text style={[styles.iconText, {color: '#1E3A8A'}]}>Scan any Crypto QR code</Text>
+          <Text style={[styles.iconText, {color: '#4159fa'}]}>Scan any Crypto QR code</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.iconButton}>
+        {/* <TouchableOpacity style={styles.bookiconButton}>
           <Image source={require('../../assets/images/contact-book.png')} style={styles.icon} />
-          <Text style={[styles.iconText, {color: '#1E3A8A'}]}>Pay Contacts</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.iconButton}>
+          <Text style={[styles.iconText, {color: '#4159fa'}]}>Pay Contacts</Text>
+        </TouchableOpacity> */}
+        <TouchableOpacity style={styles.walleticonButton}>
           <Image source={require('../../assets/images/wallet.png')} style={styles.icon} />
-          <Text style={[styles.iconText, {color: '#1E336DFF'}]}>Check Balance</Text>
+          <Text style={[styles.iconText, {color: '#4159fa'}]}>Check Balance</Text>
         </TouchableOpacity>
       </View>
+      <View style={styles.BottomCountainer}>
+      
       <View style={styles.sectionContainer}>
         <Text style={styles.sectionTitle}>People</Text>
         <View style={styles.profileContainer}>
-          {Array(6).fill().map((_, index) => (
+          {Array(4).fill().map((_, index) => (
             <Image
               key={index}
-              source={require('../../assets/images/wallet.png')}
+              source={require('../../assets/images/facebook-profile-picture-affects-chances-of-gettin_fr3n.1200.webp')}
               style={styles.profileIcon}
             />
           ))}
@@ -56,23 +61,31 @@ const App = () => {
       <View style={styles.sectionContainer}>
         <Text style={styles.sectionTitle}>Business</Text>
         <View style={styles.profileContainer}>
-          {Array(6).fill().map((_, index) => (
+          {Array(8).fill().map((_, index) => (
             <Image
               key={index}
-              source={require('../../assets/images/wallet.png')}
+              source={require('../../assets/images/facebook-profile-picture-affects-chances-of-gettin_fr3n.1200.webp')}
               style={styles.profileIcon}
             />
           ))}
         </View>
       </View>
+      <Text style={styles.manage}>Manage Your Money</Text>
       <View style={styles.buttonContainer}>
         <TouchableOpacity style={styles.button} onPress={handleTransaction}>
-          <Text style={styles.buttonText}>See Transaction History</Text>
+        <Image source={require('../../assets/images/history.png')} style={styles.historybutton}/>
+          <Text style={styles.historybuttonText}>See Transaction History</Text>
+          <Image source={require('../../assets/images/right-arrow.png')} style={styles.historybutton}/>
         </TouchableOpacity>
         <TouchableOpacity style={styles.button} onPress={() => Linking.openURL('https://coinmarketcap.com/trending-cryptocurrencies/')}>
-          <Text style={styles.buttonText}>Check Live Crypto Prices</Text>
+        <Image source={require('../../assets/images/location.png')} style={styles.cryptobutton}/>
+          <Text style={styles.cryptobuttonText}>Check Live Crypto Prices</Text>
+          <Image source={require('../../assets/images/right-arrow.png')} style={styles.cryptobutton}/>
         </TouchableOpacity>
+        </View>
+      
       </View>
+      
     </ScrollView>
   );
 };
@@ -80,14 +93,35 @@ const App = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#1E3A8A',
+    backgroundColor: '#fff',
   },
+  TopProfile:{
+    width: 40,
+    height: 40,
+    borderRadius:50,
+  },
+  topcontainer: {
+    paddingTop: 25,
+    backgroundColor: '#4159fa',
+    borderBottomLeftRadius: 50,
+    borderBottomRightRadius: 50,
+  },
+  BottomCountainer:{
+    backgroundColor: '#4159fa',
+    borderTopLeftRadius: 50,
+    borderTopRightRadius: 50,
+  },
+
   searchContainer: {
+    flexDirection: 'row',
     padding: 10,
+    alignSelf: 'center',
+    gap: 10,
   },
   searchInput: {
     backgroundColor: '#fff',
     borderRadius: 25,
+    width: '80%',
     paddingHorizontal: 20,
     paddingVertical: 10,
   },
@@ -121,6 +155,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   sectionTitle: {
+    paddingLeft: 10,
     color: '#fff',
     fontSize: 18,
     marginBottom: 10,
@@ -134,21 +169,48 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
     margin: 10,
+    borderRadius:50,
   },
   buttonContainer: {
     paddingHorizontal: 10,
     marginVertical: 20,
   },
+  manage: {
+    fontSize: 18,
+    color: '#fff',
+    paddingLeft: 10,
+  },
   button: {
-    backgroundColor: '#3B82F6',
+    flexDirection: 'row',
+    // justifyContent:'space-evenly',
+    gap: 90,
+    backgroundColor: '#fff',
     borderRadius: 25,
     paddingVertical: 15,
     alignItems: 'center',
     marginVertical: 10,
   },
-  buttonText: {
-    color: '#fff',
+  historybuttonText: {
+    color: '#4159fa',
+  },
+  historybutton:{
+    width: 20,
+    height: 20,
+    marginLeft: 10,
+    alignItems:'left',
+    // paddingRight: 10,
+  },
+  cryptobutton:{
+    color: '#4159fa',
+    width: 20,
+    height: 20,
+    marginLeft: 10,
+    alignItems:'left',
     fontSize: 16,
+
+  },
+  cryptobuttonText: {
+    color: '#4159fa',
   },
 });
 
