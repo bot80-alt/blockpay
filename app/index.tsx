@@ -5,7 +5,6 @@ import BlockPayStep2 from '@/components/pages_tabs/identity';
 import CryptoSetup from '@/components/pages_tabs/cryptosetup';
 import Homepage from '@/components/pages_tabs/homepage';
 import ProfilePage from '@/components/pages_tabs/profile';
-import PaymentPage from '@/components/pages_tabs/qrpage';
 import UserSignup from '@/components/pages_tabs/usersignup';
 import TransactionHistory from '@/components/pages_tabs/transaction_history';
 import TransferScreen from '@/components/pages_tabs/transfer';
@@ -33,10 +32,11 @@ export default function TabOneScreen() {
         <Stack.Screen name={"IDENTITY"} component={BlockPayStep2}/>
         <Stack.Screen name={"CRYPTO"} component={CryptoSetup}/>
         <Stack.Screen name={"ENTRY"} component={Homepage}/>
-        <Stack.Screen name={"PROFILE"} component={PaymentPage}/>
+        <Stack.Screen name={"PROFILE"} component={ProfilePage}/>
         <Stack.Screen name={"TRANSACTION"} component={TransactionHistory}/>
         <Stack.Screen name={"USERSIGNUP"} component={UserSignup}/>
-
+        <Stack.Screen name={"TRANSFER"} component={TransferScreen}/>
+        <Stack.Screen name={"CONFIRMATION"} component={TransactionScreen}/>
       </Stack.Navigator>
     </SafeAreaView>
   )

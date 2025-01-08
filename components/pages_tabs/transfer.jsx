@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 const TransferScreen = () => {
+  const navigation=useNavigation();
   const [amountInINR, setAmountInINR] = useState('100');
   const [amountInBTC, setAmountInBTC] = useState('0.01');
 
@@ -13,8 +15,7 @@ const TransferScreen = () => {
   };
 
   const handlePayNow = () => {
-    // Handle the pay now action
-    console.log('Pay now pressed');
+    navigation.navigate("CONFIRMATION");
   };
 
   return (

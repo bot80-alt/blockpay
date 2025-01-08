@@ -4,9 +4,9 @@ import { useNavigation } from '@react-navigation/native';
 
 const App = () => {
   const navigation = useNavigation();
-    const handleTransaction = () => {
-        navigation.navigate("TRANSACTION");
-    };
+  const handleTransaction = () => {
+      navigation.navigate("TRANSACTION");
+  };
   const handleProfile=()=>{
     navigation.navigate("PROFILE");
   };
@@ -21,7 +21,9 @@ const App = () => {
             style={styles.searchInput}
             placeholder="Pay anyone on crypto"
           />
+          <TouchableOpacity onPress={handleProfile}>
           <Image source={require('../../assets/images/facebook-profile-picture-affects-chances-of-gettin_fr3n.1200.webp')} style={styles.TopProfile}/>
+          </TouchableOpacity>
         </View>
         <View style={styles.illustrationContainer}>
           <Image

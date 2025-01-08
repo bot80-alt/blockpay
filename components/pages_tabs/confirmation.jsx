@@ -1,7 +1,15 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 const TransactionScreen = () => {
+  const navigation=useNavigation();
+  const handleConfirm=()=>{
+    navigation.navigate("ENTRY");
+  }
+  const handleAgain=()=>{
+    navigation.navigate("TRANSFER");
+  }
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -20,10 +28,10 @@ const TransactionScreen = () => {
           source={{ uri: 'https://example.com/profile-picture.jpg' }} // Replace with actual image URL
           style={styles.profileImage}
         />
-        <TouchableOpacity style={styles.payAgainButton}>
+        <TouchableOpacity style={styles.payAgainButton} onPress={handleAgain}>
           <Text style={styles.payAgainButtonText}>Pay Again</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.confirmButton}>
+        <TouchableOpacity style={styles.confirmButton} onPress={handleConfirm}>
           <Text style={styles.confirmButtonText}>Confirm</Text>
         </TouchableOpacity>
       </View>

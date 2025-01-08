@@ -1,7 +1,12 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 const ProfilePage = () => {
+  const navigation=useNavigation();
+  const handleTransfer=()=>{
+    navigation.navigate("TRANSFER");
+  }
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.header}>
@@ -19,14 +24,14 @@ const ProfilePage = () => {
       </View>
       <View style={styles.infoContainer}>
         <Text style={styles.label}>Business Name</Text>
-        <Text style={styles.infoText}>{businessName}</Text>
+        <Text style={styles.infoText}></Text>
       </View>
       <View style={styles.infoContainer}>
-        <Text style={styles.label}>Username: {username}</Text>
+        <Text style={styles.label}>Username: </Text>
       </View>
       <View style={styles.infoContainer}>
         <Text style={styles.label}>UPI ID</Text>
-        <Text style={styles.infoText}>{upiId}</Text>
+        <Text style={styles.infoText}></Text>
       </View>
       <View style={styles.cryptoContainer}>
         <Text style={styles.label}>Select Crypto Coin to Pay</Text>
@@ -49,7 +54,7 @@ const ProfilePage = () => {
           />
         </View>
       </View>
-      <TouchableOpacity style={styles.payButton}>
+      <TouchableOpacity style={styles.payButton} onPress={handleTransfer}>
         <Text style={styles.payButtonText}>Pay Now</Text>
       </TouchableOpacity>
     </ScrollView>

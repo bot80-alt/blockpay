@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 
-
 function App() {
   const {hasPermission, requestPermission} = useCameraPermission();
   const device = useCameraDevice('back');
