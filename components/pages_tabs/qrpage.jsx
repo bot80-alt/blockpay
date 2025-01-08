@@ -1,12 +1,6 @@
 import React, {useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {
-  Camera,
-  Code,
-  useCameraDevice,
-  useCameraPermission,
-  useCodeScanner,
-} from 'react-native-vision-camera';
+
 
 function App() {
   const {hasPermission, requestPermission} = useCameraPermission();

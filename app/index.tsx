@@ -6,16 +6,16 @@ import CryptoSetup from '@/components/pages_tabs/cryptosetup';
 import Homepage from '@/components/pages_tabs/homepage';
 import ProfilePage from '@/components/pages_tabs/profile';
 import PaymentPage from '@/components/pages_tabs/qrpage';
+import UserSignup from '@/components/pages_tabs/usersignup';
 import TransactionHistory from '@/components/pages_tabs/transaction_history';
 import TransferScreen from '@/components/pages_tabs/transfer';
 import TransactionScreen from '@/components/pages_tabs/confirmation';
-import QrPage from '@/components/pages_tabs/qrpage';
+//import QrPage from '@/components/pages_tabs/qrpage';
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, ScrollView, SafeAreaView } from 'react-native';
 import {Link} from 'expo-router';
-
 
 const Stack = createNativeStackNavigator();
 
@@ -35,7 +35,7 @@ export default function TabOneScreen() {
         <Stack.Screen name={"ENTRY"} component={Homepage}/>
         <Stack.Screen name={"PROFILE"} component={PaymentPage}/>
         <Stack.Screen name={"TRANSACTION"} component={TransactionHistory}/>
-        <Stack.Screen name={"QR"} component={QrPage}/>
+        <Stack.Screen name={"USERSIGNUP"} component={UserSignup}/>
 
       </Stack.Navigator>
     </SafeAreaView>

@@ -49,7 +49,13 @@ const Login = () => {
           shadowRadius: 3.84,
           elevation: 5
         }]}
-        onPress={handleEntry}
+        onPress={() => {
+          if (!email || !password) {
+            alert('Please fill all the required fields');
+          } else {
+            handleEntry();
+          }
+        }}
       >
         <Text style={styles.nextButtonText}>Login →</Text>
       </TouchableOpacity>
