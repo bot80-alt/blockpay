@@ -10,6 +10,7 @@ import TransactionHistory from '@/components/pages_tabs/transaction_history';
 import TransferScreen from '@/components/pages_tabs/transfer';
 import TransactionScreen from '@/components/pages_tabs/confirmation';
 //import QrPage from '@/components/pages_tabs/qrpage';
+//import QRScanner from '@/components/pages_tabs/qrscanner';
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from 'react';
@@ -50,4 +51,3 @@ const styles = StyleSheet.create({
     flexGrow: 1,
   }
 });
-
