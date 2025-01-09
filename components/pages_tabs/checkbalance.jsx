@@ -30,14 +30,18 @@ const Checkbalance= () => {
     );
 };
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: "#fff",
+    },
     topcontainer: {
         height: 125,
         borderWidth:5,
-        bordertopColor:'#4159fa',
+        bordertopColor:'#007AFF',
         borderLeftColor:'#9fd3fc',
         borderBottomColor:'#9fd3fc',
         borderRightColor:'#9fd3fc',
-        backgroundColor: '#4159fa',
+        backgroundColor: '#007AFF',
         borderBottomLeftRadius: 50,
         borderBottomRightRadius: 50,
     },

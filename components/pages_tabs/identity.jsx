@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet,ScrollView } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 
 const BlockPayStep2 = () => {
   const route = useRoute();
-  const { businessName, email, mobileNumber, password } = route.params;
+  const { businessName, email, mobileNumber, password,} = route.params;
   const navigation = useNavigation();
 
   const [govtid, setGovtid] = useState('');
@@ -23,27 +23,26 @@ const BlockPayStep2 = () => {
 
   return (
     <ScrollView style={styles.scrollContainer}>
-    <View style={[styles.container, { marginTop: 40 }]}>
-      <View style={[styles.header, { marginTop: 20 }]}>
-        <Text style={styles.headerText}>BlockPay in 3 Steps - {businessName}</Text>
-        <View style={[styles.steps, { marginTop: 20 }]}>
+      <View style={styles.container}>
+      <Text style={styles.header}>BlockPay in 3 Steps - {businessName}</Text>
+        <View style={styles.stepsContainer}>
           <View style={styles.step}>
             <Text style={styles.stepNum}>1</Text>
             <Text style={styles.stepText}>Business Details</Text>
           </View>
           <Text style={styles.arrow}>→</Text>
-          <View style={styles.step}>
-            <Text style={styles.stepNumber}>2</Text>
-            <Text style={styles.stepText}>Verify your Identity</Text>
+          <View style={[styles.step,styles.activeStep]}>
+            <Text style={styles.activeNumber}>2</Text>
+            <Text style={styles.activeText}>Verify your</Text>
+            <Text style={styles.activeText}>Identity</Text>
           </View>
           <Text style={styles.arrow}>→</Text>
           <View style={styles.step}>
-            <Text style={styles.stepNum}>3</Text>
+            <Text style={styles.stepNumber}>3</Text>
             <Text style={styles.stepText}>Crypto Setup</Text>
           </View>
         </View>
-      </View>
-      <Text style={[styles.title, { marginTop: 30 }]}>2. Verify your Identity</Text>
+      <Text style={styles.subHeader}>2. Verify your Identity</Text>
       <TextInput
         style={styles.input}
         placeholder="Enter your Name as per GOVT ID *"
@@ -82,8 +81,11 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    padding: 20,
+    justifyContent: 'center',
+    top: 225,
+    paddingHorizontal: 20,
     backgroundColor: '#fff',
+    borderRadius: 10,
   },
   header: {
     fontSize: 26,
@@ -126,9 +128,10 @@ const styles = StyleSheet.create({
     color: '#007AFF',
   },
   arrow: {
-    fontSize: 24,
-    marginHorizontal: 10,
-    color: '#333',
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#007AFF',
+    top: 15
   },
   subHeader: {
     fontSize: 18,

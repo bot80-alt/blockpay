@@ -13,6 +13,10 @@ const Login = () => {
     navigation.navigate("ENTRY");
   };
 
+  const handleSignup=()=>{
+    navigation.navigate("SIGNUP");
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Welcome Back!</Text>
@@ -41,7 +45,7 @@ const Login = () => {
           <Icon
             name={showPassword ? 'eye-off-outline' : 'eye-outline'}
             size={24}
-            color="#4159fa"
+            color="#007AFF"
           />
         </TouchableOpacity>
       </View>
@@ -61,14 +65,20 @@ const Login = () => {
           shadowRadius: 3.84,
           elevation: 5
         }]}
-        onPress={handleEntry}
+        onPress={() => {
+          if (!email || !password) {
+            alert('Please fill in all required fields.');
+          } else {
+            handleEntry();
+          }
+        }}
       >
         <Text style={styles.nextButtonText}>Login →</Text>
       </TouchableOpacity>
 
       <View style={styles.footerContainer}>
         <Text style={styles.footerText}>Don't have an account? </Text>
-        <TouchableOpacity onPress={() => navigation.navigate("Signup")}>
+        <TouchableOpacity onPress={handleSignup}>
           <Text style={styles.signupText}>Sign Up</Text>
         </TouchableOpacity>
       </View>
@@ -100,20 +110,21 @@ const styles = StyleSheet.create({
   },
   input: {
     borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 10,
+    borderColor: '#ddd',
+    borderRadius: 5,
     padding: 12,
     marginBottom: 15,
-    backgroundColor: '#fff',
+    backgroundColor: '#f9f9f9',
   },
   passwordContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 10,
-    paddingHorizontal: 12,
-    backgroundColor: '#fff',
+    borderColor: '#ddd',
+    borderRadius: 5,
+    padding: 10,
+    marginBottom: 15,
+    backgroundColor: '#f9f9f9',
   },
   passwordInput: {
     flex: 1,
@@ -124,11 +135,11 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   forgotPasswordText: {
-    color: '#4159fa',
+    color: '#007AFF',
     fontSize: 14,
   },
   nextButton: {
-    backgroundColor: '#4159fa',
+    backgroundColor: '#007AFF',
     borderRadius: 10,
     paddingVertical: 15,
     alignItems: 'center',
@@ -149,7 +160,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   signupText: {
-    color: '#4159fa',
+    color: '#007AFF',
     fontSize: 14,
     fontWeight: 'bold',
   },
