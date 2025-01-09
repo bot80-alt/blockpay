@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, SafeAreaView } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 const Signup = () => {
@@ -50,7 +50,6 @@ const Signup = () => {
       <TextInput
         style={[styles.input, { width: '100%' }]}
         placeholder="Enter your Mobile Number"
-        keyboardType="numeric"
         value={mobileNumber}
         onChangeText={setMobileNumber}
       />
@@ -101,8 +100,7 @@ const Signup = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop:20,
-    padding:20,
+    padding: 20,
     backgroundColor: '#fff',
   },
   header: {
@@ -110,7 +108,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     marginBottom: 20,
-    marginTop:20,
   },
   stepsContainer: {
     flexDirection: 'row',

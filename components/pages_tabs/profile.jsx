@@ -27,7 +27,7 @@ const ProfilePage = () => {
         <Text style={styles.infoText}></Text>
       </View>
       <View style={styles.infoContainer}>
-        <Text style={styles.label}>Username: </Text>
+        <Text style={styles.label}>Username</Text>
       </View>
       <View style={styles.infoContainer}>
         <Text style={styles.label}>UPI ID</Text>

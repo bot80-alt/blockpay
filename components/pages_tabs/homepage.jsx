@@ -11,7 +11,10 @@ const App = () => {
     navigation.navigate("PROFILE");
   };
   const handleQr=()=>{
-    navigation.navigate("QRCODE");
+    navigation.navigate("QRPAGE");
+  };
+  const handleBalance=()=>{
+    navigation.navigate("BALANCE");
   };
   return (
     <ScrollView style={styles.container}>
@@ -41,8 +44,8 @@ const App = () => {
           <Image source={require('../../assets/images/contact-book.png')} style={styles.icon} />
           <Text style={[styles.iconText, {color: '#4159fa'}]}>Pay Contacts</Text>
         </TouchableOpacity> */}
-        <TouchableOpacity style={styles.walleticonButton}>
-          <Image source={require('../../assets/images/wallet.png')} style={styles.icon} />
+        <TouchableOpacity style={styles.walleticonButton}  onPress={handleBalance}>
+          <Image source={require('../../assets/images/wallet.png')} style={styles.icon}/>
           <Text style={[styles.iconText, {color: '#4159fa'}]}>Check Balance</Text>
         </TouchableOpacity>
       </View>

@@ -1,22 +1,31 @@
 import React, {useState} from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet , SafeAreaView} from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 
-const BlockPayStep2 = ({route}) => {
-  const {businessName, email, mobileNumber, password}=route.params;
+const BlockPayStep2 = () => {
+  const route = useRoute();
+  const { businessName, email, mobileNumber, password } = route.params;
   const navigation = useNavigation();
 
   const [govtid, setGovtid] = useState('');
   const [idnumber, setIdnumber] = useState('');
 
   const handleCrypto = () => {
-    navigation.navigate("CRYPTO",{businessName,email,mobileNumber,password,govtid,idnumber});
+    navigation.navigate('CRYPTO', {
+      businessName,
+      email,
+      mobileNumber,
+      password,
+      govtid,
+      idnumber,
+    });
   };
 
   return (
+    <ScrollView style={styles.scrollContainer}>
     <View style={[styles.container, { marginTop: 40 }]}>
       <View style={[styles.header, { marginTop: 20 }]}>
-        <Text style={styles.headerText}>BlockPay in 3 Steps</Text>
+        <Text style={styles.headerText}>BlockPay in 3 Steps - {businessName}</Text>
         <View style={[styles.steps, { marginTop: 20 }]}>
           <View style={styles.step}>
             <Text style={styles.stepNum}>1</Text>
@@ -36,37 +45,21 @@ const BlockPayStep2 = ({route}) => {
       </View>
       <Text style={[styles.title, { marginTop: 30 }]}>2. Verify your Identity</Text>
       <TextInput
-        style={[styles.input, { marginTop: 20 }]}
+        style={styles.input}
         placeholder="Enter your Name as per GOVT ID *"
         onChangeText={setGovtid}
         value={govtid}
-        required
       />
       <TextInput
-        style={[styles.input, { marginTop: 20 }]}
+        style={styles.input}
         placeholder="Enter your Aadhar/PAN Card Number *"
-        maxLength={12} // Adjust for Aadhar or PAN specifics
-        keyboardType="numeric"
-        value={idnumber}
+        maxLength={12}
         onChangeText={setIdnumber}
-        required
+        value={idnumber}
       />
-      <TouchableOpacity 
-        style={[styles.button, {
-          position: 'absolute',
-          bottom: 20,
-          left: 20,
-          right: 20,
-          borderRadius: 25,
-          shadowColor: '#000',
-          shadowOffset: {
-            width: 0,
-            height: 2,
-          },
-          shadowOpacity: 0.25,
-          shadowRadius: 3.84,
-          elevation: 5
-        }]} 
+
+      <TouchableOpacity
+        style={styles.nextButton}
         onPress={() => {
           if (!govtid || !idnumber) {
             alert('Please fill all the required fields');
@@ -75,88 +68,93 @@ const BlockPayStep2 = ({route}) => {
           }
         }}
       >
-        <Text style={styles.buttonText}>Next</Text>
+        <Text style={styles.nextButtonText}>Next</Text>
       </TouchableOpacity>
     </View>
+  </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
+  scrollContainer: {
+    flexGrow: 1,
+    backgroundColor: '#fff',
+  },
   container: {
     flex: 1,
-    paddingTop:30,
-    paddingLeft:20,
-    paddingRight:20,
+    padding: 20,
     backgroundColor: '#fff',
-    paddingBottom:20,
   },
   header: {
-    alignItems: 'center',
-    marginBottom: 20,
-  },
-  headerText: {
-    fontSize: 24,
+    fontSize: 26,
     fontWeight: 'bold',
+    textAlign: 'center',
+    marginBottom: 30,
     color: '#333',
   },
-  steps: {
+  stepsContainer: {
     flexDirection: 'row',
-    alignItems: 'center',
-    marginTop: 10,
+    justifyContent: 'space-around',
+    marginBottom: 20,
   },
   step: {
     alignItems: 'center',
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 30,
+    backgroundColor: '#f0f0f0',
+  },
+  activeStep: {
+    backgroundColor: '#007AFF',
+    borderColor: '#007AFF',
+  },
+  activeNumber: {
+    color: '#fff',
+  },
+  activeText: {
+    color:'#fff',
   },
   stepNumber: {
-    fontSize: 24,
+    fontSize: 18,
     fontWeight: 'bold',
-    color: '#fff',
-    backgroundColor: '#8a2be2',
-    borderRadius: 50,
-    padding: 10,
-    width: 50,
-    textAlign: 'center',
-  },
-  stepNum: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#fff',
-    backgroundColor: '#59AFFFFF',
-    borderRadius: 50,
-    width: 40,
-    height: 40,
-    textAlign: 'center',
-    lineHeight: 40,
+    color: '#007AFF',
   },
   stepText: {
-    marginTop: 5,
     fontSize: 12,
-    color: '#333',
+    color: '#007AFF',
   },
   arrow: {
     fontSize: 24,
     marginHorizontal: 10,
     color: '#333',
   },
-  title: {
-    fontSize: 20,
+  subHeader: {
+    fontSize: 18,
     fontWeight: 'bold',
-    marginBottom: 20,
+    marginBottom: 10,
   },
   input: {
     borderWidth: 1,
-    borderColor: '#ccc',
+    borderColor: '#ddd',
     borderRadius: 5,
-    padding: 10,
-    marginBottom: 20,
+    padding: 12,
+    marginBottom: 15,
+    backgroundColor: '#f9f9f9',
   },
-  button: {
-    backgroundColor: '#8a2be2',
-    borderRadius: 5,
-    padding: 15,
+  nextButton: {
+    backgroundColor: '#007AFF',
+    borderRadius: 10,
+    paddingVertical: 15,
     alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
-  buttonText: {
+  nextButtonText: {
     color: '#fff',
     fontSize: 16,
     fontWeight: 'bold',
