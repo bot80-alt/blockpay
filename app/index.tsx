@@ -10,8 +10,11 @@ import TransactionHistory from '@/components/pages_tabs/transaction_history';
 import TransferScreen from '@/components/pages_tabs/transfer';
 import TransactionScreen from '@/components/pages_tabs/confirmation';
 import Checkbalance from '@/components/pages_tabs/checkbalance';
-import QrPage from '@/components/pages_tabs/qrpage';
-import QRScanner from '@/components/pages_tabs/qrscanner';
+import ScanQRPage from '@/components/pages_tabs/qrpage';
+import QRCamera from '@/components/pages_tabs/qrscanner';
+
+//import QrPage from '@/components/pages_tabs/qrpage';
+//import QRScanner from '@/components/pages_tabs/qrscanner';
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from 'react';
@@ -40,8 +43,8 @@ export default function TabOneScreen() {
         <Stack.Screen name={"TRANSFER"} component={TransferScreen}/>
         <Stack.Screen name={"CONFIRMATION"} component={TransactionScreen}/>
         <Stack.Screen name={"BALANCE"} component={Checkbalance}/>
-        <Stack.Screen name={"QRPAGE"} component={QrPage}/>
-        <Stack.Screen name={"QRSCANNER"} component={QRScanner}/>
+        <Stack.Screen name={"SCANQR"}  component={ScanQRPage}/>
+        <Stack.Screen name={"CAMERAQR"} component={QRCamera}/>
       </Stack.Navigator>
     </SafeAreaView>
   )

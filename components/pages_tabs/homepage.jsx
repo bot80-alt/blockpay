@@ -11,7 +11,7 @@ const App = () => {
     navigation.navigate("PROFILE");
   };
   const handleQr=()=>{
-    navigation.navigate("QRPAGE");
+    navigation.navigate("SCANQR");
   };
   const handleBalance=()=>{
     navigation.navigate("BALANCE");
