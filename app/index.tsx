@@ -1,4 +1,5 @@
 import SignPageScreen from '@/components/pages_tabs/sign_page';
+import UserSignPage from '@/components/pages_tabs/usersign_page';
 import Signup from '@/components/pages_tabs/signup';
 import Login from '@/components/pages_tabs/login';
 import BlockPayStep2 from '@/components/pages_tabs/identity';
@@ -44,6 +45,7 @@ export default function TabOneScreen() {
         <Stack.Screen name={"SCANQR"}  component={ScanQRPage}/>
         <Stack.Screen name={"CAMERAQR"} component={QRCamera}/>
         <Stack.Screen name={"HOMEPROFILE"} component={QRCodeGenerator}/>
+        <Stack.Screen name={"USERSIGNUPPAGE"} component={UserSignPage}/>
       </Stack.Navigator>
     </SafeAreaView>
   )

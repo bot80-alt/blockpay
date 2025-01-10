@@ -1,26 +1,25 @@
 import { CameraView } from "expo-camera";
 import { Stack } from "expo-router";
-import { useRef, useEffect, useState } from "react";
-import { Linking, Platform, SafeAreaView, StyleSheet, StatusBar, AppState, Alert, Dimensions, View, Text } from "react-native";
+import { useRef, useEffect } from "react";
+import {
+  Linking,
+  Platform,
+  SafeAreaView,
+  StyleSheet,
+  StatusBar,
+  AppState,
+  View,
+  Text,
+  Dimensions,
+  Animated,
+} from "react-native";
 
 export default function QRCamera() {
   const qrLock = useRef(false);
   const appstate = useRef(AppState.currentState);
-  const [hasPermission, setHasPermission] = useState(null);
-  const [scanned, setScanned] = useState(false);
+  const lineAnimation = useRef(new Animated.Value(0)).current;
 
-  const screenWidth = Dimensions.get('window').width;
-  const scannerBoxSize = 250;
-
-  // Request camera permission
   useEffect(() => {
-    const requestCameraPermission = async () => {
-      const { status } = await CameraView.requestPermissionsAsync();
-      setHasPermission(status === "granted");
-    };
-
-    requestCameraPermission();
-
     const subscription = AppState.addEventListener("change", (nextState) => {
       if (nextState === "active" && appstate.current === "inactive") {
         qrLock.current = false;
@@ -30,36 +29,23 @@ export default function QRCamera() {
     return () => subscription.remove();
   }, []);
 
-  const handleBarCodeScanned = ({ data }) => {
-    if (scanned) return;
-
-    setScanned(true);
-    setTimeout(async () => {
-      await Linking.openURL(data);
-    }, 500);
-  };
-
-  if (hasPermission === null) {
-    return (
-      <SafeAreaView style={styles.centered}>
-        <StatusBar hidden={Platform.OS === "android"} />
-        <Stack.Screen options={{ title: "QR Scanner", headerShown: false }} />
-        <Text style={styles.infoText}>Requesting for camera permission...</Text>
-      </SafeAreaView>
-    );
-  }
-
-  if (hasPermission === false) {
-    return (
-      <SafeAreaView style={styles.centered}>
-        <StatusBar hidden={Platform.OS === "android"} />
-        <Stack.Screen options={{ title: "QR Scanner", headerShown: false }} />
-        <Text style={styles.infoText}>
-          Camera access denied. Please enable it in your settings.
-        </Text>
-      </SafeAreaView>
-    );
-  }
+  useEffect(() => {
+    // Animate the scanning line
+    Animated.loop(
+      Animated.sequence([
+        Animated.timing(lineAnimation, {
+          toValue: Dimensions.get("window").width * 0.7,
+          duration: 1500,
+          useNativeDriver: true,
+        }),
+        Animated.timing(lineAnimation, {
+          toValue: 0,
+          duration: 1500,
+          useNativeDriver: true,
+        }),
+      ])
+    ).start();
+  }, [lineAnimation]);
 
   return (
     <SafeAreaView style={styles.abs}>
@@ -69,16 +55,32 @@ export default function QRCamera() {
       <CameraView
         style={styles.abs}
         facing="back"
-        onBarcodeScanned={scanned ? undefined : handleBarCodeScanned}
+        onBarcodeScanned={({ data }) => {
+          if (!qrLock.current) {
+            qrLock.current = true;
+            setTimeout(async () => {
+              await Linking.openURL(data);
+              qrLock.current = false;
+            }, 500);
+          }
+        }}
       >
         {/* Overlay */}
-        <SafeAreaView style={styles.overlay}>
-          {/* QR scanner box */}
-          <View style={[styles.scannerBox, { width: scannerBoxSize, height: scannerBoxSize }]} />
+        <View style={styles.overlay}>
+          {/* Scanner box */}
+          <View style={styles.scannerBox}>
+            {/* Animated scanning line */}
+            <Animated.View
+              style={[
+                styles.scannerLine,
+                { transform: [{ translateY: lineAnimation }] },
+              ]}
+            />
+          </View>
 
-          {/* Bottom Text */}
-          <Text style={styles.overlayText}>Align QR Code within the box</Text>
-        </SafeAreaView>
+          {/* Hint text */}
+          <Text style={styles.hintText}>Align the QR code within the frame</Text>
+        </View>
       </CameraView>
     </SafeAreaView>
   );
@@ -94,18 +96,6 @@ const styles = StyleSheet.create({
     bottom: 0,
     paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
   },
-  centered: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#000",
-  },
-  infoText: {
-    color: "#fff",
-    fontSize: 16,
-    paddingHorizontal: 20,
-    textAlign: "center",
-  },
   overlay: {
     flex: 1,
     justifyContent: "center",
@@ -118,14 +108,24 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(0, 0, 0, 0.6)",
   },
   scannerBox: {
-    borderWidth: 3,
+    width: Dimensions.get("window").width * 0.7,
+    height: Dimensions.get("window").width * 0.7,
+    borderWidth: 2,
     borderColor: "#00FF00",
-    borderRadius: 10,
+    borderRadius: 20,
+    overflow: "hidden",
+    justifyContent: "center",
   },
-  overlayText: {
-    color: "#fff",
-    fontSize: 16,
+  scannerLine: {
+    width: "100%",
+    height: 2,
+    backgroundColor: "#00FF00",
+    position: "absolute",
+  },
+  hintText: {
     marginTop: 20,
+    color: "#FFFFFF",
+    fontSize: 16,
     textAlign: "center",
   },
 });
