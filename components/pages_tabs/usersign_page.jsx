@@ -2,19 +2,17 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image, Button } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-const SignPageScreen = () => {
+const UserSignPage = () => {
     const navigation = useNavigation();
     const handleSignup = () => {
-        navigation.navigate("SIGNUP");
+        navigation.navigate("USER_SIGNUP");
       };
+
       const handleLogin = () => {
         navigation.navigate("LOGIN");
       };
       const handleusersignup = () => {
-        navigation.navigate("USER_SIGNUP");
-      };
-      const handleusersignpage = () => {
-        navigation.navigate("USERSIGN_PAGE");
+        navigation.navigate("HOME");
       };
     return (
         <View style={styles.container}>
@@ -26,10 +24,10 @@ const SignPageScreen = () => {
                 style={styles.image}
             />
             <View style={styles.toggleContainer}>
-                <TouchableOpacity style={[styles.toggleButton, styles.toggleButtonActive]}>
+                <TouchableOpacity style={[styles.toggleButton]} onPress={handleusersignup}>
                     <Text style={styles.toggleButtonText}>Merchant</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.toggleButton} onPress={handleusersignpage}>
+                <TouchableOpacity style={[styles.toggleButton,styles.toggleButtonActive]}>
                     <Text style={styles.toggleButtonText}>User</Text>
                 </TouchableOpacity>
             </View>
@@ -127,5 +125,4 @@ const styles = StyleSheet.create({
         transition: 'all 0.3s ease-in-out',
     },
 });
-
-export default SignPageScreen;
+export default UserSignPage;

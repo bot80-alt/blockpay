@@ -4,42 +4,44 @@ import { useNavigation } from '@react-navigation/native';
 
 const UserSignup = () => {
   const navigation = useNavigation();
-  const [userName, setUserName]=useState('');
+  const [userName, setuserName]=useState('');
   const [email, setEmail] = useState('');
-  const [userMobile,setUserMobile]=useState('');
+  const [mobileNumber,setuserMobile]=useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({});
 
   const handleIdentity = () => {
-    navigation.navigate("IDENTITY", { businessName, email, mobileNumber, password});
+    navigation.navigate("IDENTITY", { userName, email, mobileNumber, password});
   };
 
   return (
-    <View style={[styles.container, { alignItems: 'center', justifyContent: 'flex-start', marginTop: 40 }]}>
+    <View style={styles.container}>
       <Text style={styles.header}>BlockPay in 3 Steps</Text>
       <View style={styles.stepsContainer}>
-        <View style={[styles.step, {marginRight: 20}]}>
-          <Text style={styles.stepNumber}>1</Text>
-          <Text style={styles.stepText}>User Details</Text>
+        <View style={[styles.step,styles.activeStep]}>
+          <Text style={styles.activeNumber}>1</Text>
+          <Text style={styles.activeText}>User Details</Text>
         </View>
-        <View style={[styles.step, {marginRight: 20}]}>
+        <Text style={styles.arrow}>→</Text>
+        <View style={styles.step}>
           <Text style={styles.stepNum}>2</Text>
           <Text style={styles.stepText}>Verify your Identity</Text>
         </View>
+        <Text style={styles.arrow}>→</Text>
         <View style={styles.step}>
           <Text style={styles.stepNum}>3</Text>
           <Text style={styles.stepText}>Crypto Setup</Text>
         </View>
       </View>
-      <Text style={styles.subHeader}>1. User Details</Text>
+      <Text style={styles.subHeader}>1. User Details</Text> 
       <TextInput
-        style={[styles.input, { width: '100%' }]}
-        placeholder="Enter your Username"
+        style={styles.input}
+        placeholder="Enter your username"
         value={userName}
-        onChangeText={setUserName}
+        onChangeText={setuserName}
       />
-      {errors.businessName && <Text style={styles.errorText}>{errors.businessName}</Text>}
+      {errors.userName && <Text style={styles.errorText}>{errors.userName}</Text>}
       <TextInput
         style={[styles.input, { width: '100%' }]}
         placeholder="Enter your Email Address"
@@ -48,16 +50,16 @@ const UserSignup = () => {
       />
       {errors.email && <Text style={styles.errorText}>{errors.email}</Text>}
       <TextInput
-        style={[styles.input, { width: '100%' }]}
+        style={styles.input}
         placeholder="Enter your Mobile Number"
         keyboardType="numeric"
-        value={userMobile}
-        onChangeText={setUserMobile}
+        value={mobileNumber}
+        onChangeText={setuserMobile}
       />
       {errors.mobileNumber && <Text style={styles.errorText}>{errors.mobileNumber}</Text>}
-      <View style={[styles.passwordContainer, { width: '80%' }]}>
+      <View style={styles.passwordContainer}>
         <TextInput
-          style={[styles.input, { width: '100%' }]}
+          style={styles.passwordInput}
           placeholder="Enter your Password"
           value={password}
           onChangeText={setPassword}
@@ -69,23 +71,9 @@ const UserSignup = () => {
         </TouchableOpacity>
       </View>
       <TouchableOpacity
-        style={[styles.nextButton, {
-          position: 'absolute',
-          bottom: 20,
-          left: 20,
-          right: 20,
-          borderRadius: 25,
-          shadowColor: '#000',
-          shadowOffset: {
-            width: 0,
-            height: 2,
-          },
-          shadowOpacity: 0.25,
-          shadowRadius: 3.84,
-          elevation: 5
-        }]}
+        style={styles.nextButton}
         onPress={() => {
-          if (!userName || !email || !userMobile || !password) {
+          if (!userName || !email || !mobileNumber || !password) {
             alert('Please fill all the required fields');
           } else {
             handleIdentity();
@@ -99,11 +87,16 @@ const UserSignup = () => {
 };
 
 const styles = StyleSheet.create({
+  scrollContainer: {
+    flexGrow: 1,
+    backgroundColor: '#fff',
+  },
   container: {
     flex: 1,
-    paddingTop:20,
-    padding:20,
+    justifyContent: 'center',
+    paddingHorizontal: 20,
     backgroundColor: '#fff',
+    borderRadius: 10,
   },
   header: {
     fontSize: 24,
@@ -114,38 +107,42 @@ const styles = StyleSheet.create({
   },
   stepsContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
     marginBottom: 20,
   },
   step: {
     alignItems: 'center',
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 30,
+    backgroundColor: '#f0f0f0',
+  },
+  activeStep: {
+    backgroundColor: '#007AFF',
+    borderColor: '#007AFF',
+  },
+  activeNumber: {
+    color: '#fff',
+  },
+  activeText: {
+    color:'#fff',
   },
   stepNumber: {
-    fontSize: 24,
+    fontSize: 18,
     fontWeight: 'bold',
-    color: '#fff',
-    backgroundColor: '#6200EE',
-    borderRadius: 50,
-    width: 40,
-    height: 40,
-    textAlign: 'center',
-    lineHeight: 40,
-  },
-  stepNum: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#fff',
-    backgroundColor: '#59AFFFFF',
-    borderRadius: 50,
-    width: 40,
-    height: 40,
-    textAlign: 'center',
-    lineHeight: 40,
+    color: '#007AFF',
   },
   stepText: {
-    marginTop: 5,
     fontSize: 12,
-    color: '#000',
+    color: '#007AFF',
+  },
+  arrow: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#007AFF',
+    top: 15
   },
   subHeader: {
     fontSize: 18,
@@ -154,21 +151,38 @@ const styles = StyleSheet.create({
   },
   input: {
     borderWidth: 1,
-    borderColor: '#ccc',
+    borderColor: '#ddd',
     borderRadius: 5,
-    padding: 10,
-    marginBottom: 10,
+    padding: 12,
+    marginBottom: 15,
+    backgroundColor: '#f9f9f9',
   },
   passwordContainer: {
     flexDirection: 'row',
     alignItems: 'center',
+    borderColor: '#ddd',
+    borderWidth: 1,
+    borderRadius: 5,
+    padding: 2,
+    marginBottom: 15,   
+    // borderWidth: 1,
+    // borderColor: '#ddd',
+    // borderRadius: 5,
+    // marginBottom: 15,
+    backgroundColor: '#f9f9f9',
   },
   showPassword: {
-    marginLeft: 10,
-    color: '#6200EE',
+    flex:1,
+    top:10,
+    right:3,
+    color: '#007AFF',
+  },
+  passwordInput: {
+    flex:1,
+    paddingVertical: 10,
   },
   nextButton: {
-    backgroundColor: '#6200EE',
+    backgroundColor: '#007AFF',
     borderRadius: 5,
     padding: 15,
     alignItems: 'center',

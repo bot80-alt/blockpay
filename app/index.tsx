@@ -10,6 +10,7 @@ import TransactionHistory from '@/components/pages_tabs/transaction_history';
 import TransferScreen from '@/components/pages_tabs/transfer';
 import TransactionScreen from '@/components/pages_tabs/confirmation';
 import Checkbalance from '@/components/pages_tabs/checkbalance';
+import UserSignPage from '@/components/pages_tabs/usersign_page';
 //import QrPage from '@/components/pages_tabs/qrpage';
 //import QRScanner from '@/components/pages_tabs/qrscanner';
 
@@ -36,10 +37,12 @@ export default function TabOneScreen() {
         <Stack.Screen name={"ENTRY"} component={Homepage}/>
         <Stack.Screen name={"PROFILE"} component={ProfilePage}/>
         <Stack.Screen name={"TRANSACTION"} component={TransactionHistory}/>
-        {/* <Stack.Screen name={"USERSIGNUP"} component={UserSignup}/> */}
+        <Stack.Screen name={"USERSIGNUP"} component={UserSignup}/>
         <Stack.Screen name={"TRANSFER"} component={TransferScreen}/>
         <Stack.Screen name={"CONFIRMATION"} component={TransactionScreen}/>
         <Stack.Screen name={"BALANCE"} component={Checkbalance}/>
+        <Stack.Screen name={"USERSIGN_PAGE"} component={UserSignPage} />
+        <Stack.Screen name={"USER_SIGNUP"} component={UserSignup} />
       </Stack.Navigator>
     </SafeAreaView>
   )

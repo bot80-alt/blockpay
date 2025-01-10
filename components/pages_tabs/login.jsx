@@ -66,7 +66,7 @@ const Login = () => {
           elevation: 5
         }]}
         onPress={() => {
-          if (!email || !password) {
+          if (!email||!password) {
             alert('Please fill in all required fields.');
           } else {
             handleEntry();
@@ -88,7 +88,6 @@ const Login = () => {
 
 const styles = StyleSheet.create({
   container: {
-    
     flex: 1,
     justifyContent: 'center',
     alignContent: 'center',
