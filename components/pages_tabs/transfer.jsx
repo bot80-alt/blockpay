@@ -39,6 +39,10 @@ const TransferScreen = () => {
         editable={false}
       />
       </View>
+      <View style={styles.arrowcontainer}>
+      <Image source={require('../../assets/images/up-arrow.png')} style={styles.arrow}/>
+      <Image source={require('../../assets/images/down-arrow.png')} style={styles.arrow}/>
+      </View>
       
       <Text style={styles.label}>Amount in Crypto</Text>
       <Text style={styles.cryptoAmount}>{amountInBTC} BTC</Text>
@@ -163,6 +167,15 @@ middlecontainer:{
     height: 30,
     left: 70,
     top: 1,
+  },
+  arrowcontainer:{
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginVertical: 20,
+  },
+  arrow:{
+    width: 50,
+    height: 50,
   },
 });
 
