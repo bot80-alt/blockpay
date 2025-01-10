@@ -20,11 +20,11 @@ const SignPageScreen = () => {
                 style={styles.image}
             />
             <View style={styles.toggleContainer}>
-                <TouchableOpacity style={[styles.toggleButton, styles.toggleButtonActive, {borderRadius: 25}]}>
-                    <Text style={[styles.toggleButtonText, {textAlign: 'center', color: 'white'}]}>Merchant</Text>
+                <TouchableOpacity style={[styles.toggleButton, styles.toggleButtonActive]}>
+                    <Text style={styles.toggleButtonText}>Merchant</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={[styles.toggleButton, {borderRadius: 25}]}>
-                    <Text style={[styles.toggleButtonText, {textAlign: 'center', color: 'black'}]}>User</Text>
+                <TouchableOpacity style={styles.toggleButton}>
+                    <Text style={styles.toggleButtonText}>User</Text>
                 </TouchableOpacity>
             </View>
             <TouchableOpacity 
@@ -32,7 +32,7 @@ const SignPageScreen = () => {
                 <Text style={styles.signUpButtonText}>Sign up →</Text>
             </TouchableOpacity>
             <TouchableOpacity 
-                style={[styles.loginButton, {borderRadius: 25}]}
+                style={styles.loginButton}
                 onPress={handleLogin}
             >
                 <Text style={styles.loginbuttonText}>Login →</Text>

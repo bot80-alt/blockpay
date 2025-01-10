@@ -1,75 +1,68 @@
-import React, {useState} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import React, { useState } from "react";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  Dimensions,
+} from "react-native";
 
-function App() {
-  const {hasPermission, requestPermission} = useCameraPermission();
-  const device = useCameraDevice('back');
-  const [latestScannedData, setLatestScannedData] = useState(null);
+import Ionicons from "react-native-vector-icons/Ionicons";
+const dWidth = Dimensions.get("window").width;
+const clr1 = "mediumseagreen";
 
-  React.useEffect(() => {
-    requestPermission();
-  }, []);
+const ScanQRPage = () => {
+  const [showQR, setShowQR] = useState(false);
+  const [qrCode, setQrCode] = useState("");
 
-  const codeScanner = useCodeScanner({
-    codeTypes: ['qr', 'ean-13'],
-    onCodeScanned: (codes: Code[]) => {
-      // Update the state with the latest scanned data
-      setLatestScannedData(codes[0].value);
-      console.log(codes[0].value);
-    },
-  });
+  const openQRscanner = () => {
+    setShowQR(true);
+  };
 
-  if (device == null) {
-    return (
-      <View>
-        <Text>Device Not Found</Text>
-      </View>
-    );
-  }
+  const onQrRead = (qrtext) => {
+    setQrCode(qrtext);
+    setShowQR(false);
+  };
 
   return (
-    <View style={styles.container}>
-      <Camera
-        style={StyleSheet.absoluteFill}
-        codeScanner={codeScanner}
-        device={device}
-        isActive={true}
+    <View style={styles.page}>
+      {qrCode ? (
+        <Text style={{ fontSize: 16, color: "black" }}>
+          {"QR Value \n" + qrCode}
+        </Text>
+      ) : null}
+      <Ionicons
+        name={"scan-circle-outline"}
+        size={qrCode ? dWidth * 0.4 : dWidth * 0.75}
+        color={clr1}
       />
-      {latestScannedData && (
-        <View style={styles.resultContainer}>
-          <Text style={styles.resultTitle}>Latest Scanned Code:</Text>
-          <Text style={styles.resultText}>{latestScannedData}</Text>
-        </View>
-      )}
+      <TouchableOpacity onPress={() => openQRscanner()} style={styles.btn}>
+        <Text style={{ color: clr1 }}>Scan QR</Text>
+      </TouchableOpacity>
+      {showQR ? <QRScanner onRead={onQrRead} /> : null}
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  container: {
+  page: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: "white",
+    alignItems: "center",
+    justifyContent: "space-evenly",
   },
-  resultContainer: {
-    position: 'absolute',
-    bottom: 40, // Adjust the position to provide space between the camera view and the result container
-    left: 20,
-    right: 20,
-    backgroundColor: 'rgba(0, 0, 0, 0.8)',
-    padding: 10,
-    borderRadius: 5,
+  btn: {
+    backgroundColor: "transparent",
+    alignItems: "center",
+    borderRadius: 10,
+    paddingVertical: "3%",
+    width: "50%",
+    borderWidth: 2,
+    borderColor: clr1,
   },
-  resultTitle: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    marginBottom: 5,
-    color: 'white',
-  },
-  resultText: {
-    fontSize: 14,
-    color: 'white',
+  btnText: {
+    color: clr1,
   },
 });
 
-export default App;
+export default ScanQRPage;

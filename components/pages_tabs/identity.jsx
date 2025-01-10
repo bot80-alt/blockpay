@@ -22,19 +22,18 @@ const BlockPayStep2 = () => {
   };
 
   return (
-    <ScrollView style={styles.scrollContainer}>
+    <View style={styles.scrollContainer}>
       <View style={styles.container}>
       <Text style={styles.header}>BlockPay in 3 Steps - {businessName}</Text>
         <View style={styles.stepsContainer}>
           <View style={styles.step}>
-            <Text style={styles.stepNum}>1</Text>
+            <Text style={styles.stepNumber}>1</Text>
             <Text style={styles.stepText}>Business Details</Text>
           </View>
           <Text style={styles.arrow}>→</Text>
           <View style={[styles.step,styles.activeStep]}>
             <Text style={styles.activeNumber}>2</Text>
-            <Text style={styles.activeText}>Verify your</Text>
-            <Text style={styles.activeText}>Identity</Text>
+            <Text style={styles.activeText}>Verify your Identity</Text>
           </View>
           <Text style={styles.arrow}>→</Text>
           <View style={styles.step}>
@@ -70,7 +69,7 @@ const BlockPayStep2 = () => {
         <Text style={styles.nextButtonText}>Next</Text>
       </TouchableOpacity>
     </View>
-  </ScrollView>
+  </View>
   );
 };
 
@@ -82,7 +81,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    top: 225,
     paddingHorizontal: 20,
     backgroundColor: '#fff',
     borderRadius: 10,
@@ -96,7 +94,7 @@ const styles = StyleSheet.create({
   },
   stepsContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     marginBottom: 20,
   },
   step: {
@@ -108,15 +106,16 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     backgroundColor: '#f0f0f0',
   },
-  activeStep: {
-    backgroundColor: '#007AFF',
-    borderColor: '#007AFF',
-  },
-  activeNumber: {
+  stepNumber: {
+    fontSize: 24,
+    fontWeight: 'bold',
     color: '#fff',
-  },
-  activeText: {
-    color:'#fff',
+    backgroundColor: '#6C63FF',
+    borderRadius: 50,
+    padding: 10,
+    width:50,
+    textAlign: 'center',
+    marginBottom: 5,
   },
   stepNumber: {
     fontSize: 18,
@@ -126,6 +125,16 @@ const styles = StyleSheet.create({
   stepText: {
     fontSize: 12,
     color: '#007AFF',
+  },
+  activeStep: {
+    backgroundColor: '#007AFF',
+    borderColor: '#007AFF',
+  },
+  activeNumber: {
+    color: '#fff',
+  },
+  activeText: {
+    color:'#fff',
   },
   arrow: {
     fontSize: 20,

@@ -5,13 +5,13 @@ import BlockPayStep2 from '@/components/pages_tabs/identity';
 import CryptoSetup from '@/components/pages_tabs/cryptosetup';
 import Homepage from '@/components/pages_tabs/homepage';
 import ProfilePage from '@/components/pages_tabs/profile';
-import PaymentPage from '@/components/pages_tabs/qrpage';
-import Checkbalance from '@/components/pages_tabs/checkbalance';
 import UserSignup from '@/components/pages_tabs/usersignup';
 import TransactionHistory from '@/components/pages_tabs/transaction_history';
 import TransferScreen from '@/components/pages_tabs/transfer';
 import TransactionScreen from '@/components/pages_tabs/confirmation';
+import Checkbalance from '@/components/pages_tabs/checkbalance';
 //import QrPage from '@/components/pages_tabs/qrpage';
+//import QRScanner from '@/components/pages_tabs/qrscanner';
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from 'react';
@@ -35,11 +35,11 @@ export default function TabOneScreen() {
         <Stack.Screen name={"CRYPTO"} component={CryptoSetup}/>
         <Stack.Screen name={"ENTRY"} component={Homepage}/>
         <Stack.Screen name={"PROFILE"} component={ProfilePage}/>
-        <Stack.Screen name={"BALANCE"} component={Checkbalance}/>
         <Stack.Screen name={"TRANSACTION"} component={TransactionHistory}/>
         {/* <Stack.Screen name={"USERSIGNUP"} component={UserSignup}/> */}
         <Stack.Screen name={"TRANSFER"} component={TransferScreen}/>
         <Stack.Screen name={"CONFIRMATION"} component={TransactionScreen}/>
+        <Stack.Screen name={"BALANCE"} component={Checkbalance}/>
       </Stack.Navigator>
     </SafeAreaView>
   )
@@ -53,4 +53,3 @@ const styles = StyleSheet.create({
     flexGrow: 1,
   }
 });
-

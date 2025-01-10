@@ -9,9 +9,12 @@ const Checkbalance= () => {
     return (
         <ScrollView contentContainerStyle={styles.container}>
             <View style={styles.topcontainer}>
-                <Image source={require('../../assets/images/left-arrow.png')} style={styles.topcontainerimg} onProgress={handlehomepage}/>
+            <TouchableOpacity onPress={handlehomepage}>
+                <Image source={require('../../assets/images/left-arrow.png')} style={styles.topcontainerimg}/>
+                </TouchableOpacity>
                 <Text style={styles.topcontainertext}>Balance</Text>
             </View>
+
         <View style={styles.card}>
         <View style={styles.cardHeader}>
           <Text style={styles.cardLabel}>SAVINGS WALLET</Text>

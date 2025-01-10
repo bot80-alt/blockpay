@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, SafeAreaView,ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 const Signup = () => {
@@ -12,93 +12,86 @@ const Signup = () => {
   const [errors, setErrors] = useState({});
 
   const handleIdentity = () => {
-    navigation.navigate("IDENTITY", { businessName, email, mobileNumber, password });
+    navigation.navigate("IDENTITY", { businessName, email, mobileNumber, password});
   };
 
   return (
-    <ScrollView contentContainerStyle={styles.scrollContainer}>
-      <View style={styles.container}>
-        <Text style={styles.header}>BlockPay in 3 Easy Steps</Text>
-
-        <View style={styles.stepsContainer}>
-          <View style={[styles.step, styles.activeStep]}>
-            <Text style={styles.activeNumber}>1</Text>
-            <Text style={styles.activeText}>Business Details</Text>
-          </View>
-          <Text style={styles.arrow}>→</Text>
-          <View style={styles.step}>
-            <Text style={styles.stepNumber}>2</Text>
-            <Text style={styles.stepText}>Verify Identity</Text>
-          </View>
-          <Text style={styles.arrow}>→</Text>
-          <View style={styles.step}>
-            <Text style={styles.stepNumber}>3</Text>
-            <Text style={styles.stepText}>Crypto Setup</Text>
-          </View>
+    <View style={styles.scrollContainer}>
+    <View style={styles.container}>
+      <Text style={styles.header}>BlockPay in 3 Steps</Text>
+      <View style={styles.stepsContainer}>
+        <View style={[styles.step,styles.activeStep]}>
+          <Text style={styles.activeNumber}>1</Text>
+          <Text style={styles.activeText}>Business Details</Text>
         </View>
-
-        <Text style={styles.subHeader}>Step 1: Business Details</Text>
-
-        <TextInput
-          style={styles.input}
-          placeholder="Business Name *"
-          value={businessName}
-          onChangeText={setBusinessName}
-        />
-        {errors.businessName && <Text style={styles.errorText}>{errors.businessName}</Text>}
-
-        <TextInput
-          style={styles.input}
-          placeholder="Email Address *"
-          value={email}
-          onChangeText={setEmail}
-        />
-        {errors.email && <Text style={styles.errorText}>{errors.email}</Text>}
-
-        <TextInput
-          style={styles.input}
-          placeholder="Mobile Number *"
-          value={mobileNumber}
-          onChangeText={setMobileNumber}
-        />
-        {errors.mobileNumber && <Text style={styles.errorText}>{errors.mobileNumber}</Text>}
-
-        <View style={styles.passwordContainer}>
-          <TextInput
-            style={styles.Passwordinput}
-            placeholder="Password *"
-            value={password}
-            onChangeText={setPassword}
-            secureTextEntry={!showPassword}
-          />
-          <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
-            <Text style={styles.showPassword}>{showPassword ? 'Hide' : 'Show'}</Text>
-          </TouchableOpacity>
+        <Text style={styles.arrow}>→</Text>
+        <View style={styles.step}>
+          <Text style={styles.stepNumber}>2</Text>
+          <Text style={styles.stepText}>Verify your Identity</Text>
         </View>
+        <Text style={styles.arrow}>→</Text>
+        <View style={styles.step}>
+          <Text style={styles.stepNumber}>3</Text>
+          <Text style={styles.stepText}>Crypto Setup</Text>
+        </View>
+      </View>
+      <Text style={styles.subHeader}>1. Business Details</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Enter your Business Name *"
+        value={businessName}
+        onChangeText={setBusinessName}
+      />
+      {errors.businessName && <Text style={styles.errorText}>{errors.businessName}</Text>}
+      <TextInput
+        style={styles.input}
+        placeholder="Enter your Email Address"
+        value={email}
+        onChangeText={setEmail}
+      />
+      {errors.email && <Text style={styles.errorText}>{errors.email}</Text>}
+      <TextInput
+        style={styles.input}
+        placeholder="Enter your Mobile Number"
+        keyboardType="numeric"
+        value={mobileNumber}
+        onChangeText={setMobileNumber}
+      />
+      {errors.mobileNumber && <Text style={styles.errorText}>{errors.mobileNumber}</Text>}
+      <View style={styles.passwordContainer}>
+        <TextInput
+          style={styles.passwordInput}
+          placeholder="Enter your Password"
+          value={password}
+          onChangeText={setPassword}
+          secureTextEntry={!showPassword}
+        />
         {errors.password && <Text style={styles.errorText}>{errors.password}</Text>}
-
-        <TouchableOpacity
-          style={styles.nextButton}
-          onPress={() => {
-            if (!businessName || !email || !mobileNumber || !password) {
-              alert('Please fill in all required fields.');
-            } else {
-              handleIdentity();
-            }
-          }}
-        >
-          <Text style={styles.nextButtonText}>Next</Text>
+        <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
+          <Text style={styles.showPassword}>{showPassword ? 'Hide' : 'Show'}</Text>
         </TouchableOpacity>
       </View>
-    </ScrollView>
+      <TouchableOpacity
+        style={styles.nextButton}
+        onPress={() => {
+          if (!businessName || !email || !mobileNumber || !password) {
+            alert('Please fill all the required fields');
+          } else {
+            handleIdentity();
+          }
+        }}
+      >
+        <Text style={styles.nextButtonText}>Next</Text>
+      </TouchableOpacity>
+    </View>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   scrollContainer: {
     flexGrow: 1,
-    backgroundColor: '#f9f9f9',
-    // paddingVertical: 20,
+    backgroundColor: '#fff',
   },
   container: {
     flex: 1,
@@ -106,22 +99,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     backgroundColor: '#fff',
     borderRadius: 10,
-    elevation: 3,
-    // marginHorizontal: 15,
-    // paddingVertical: 30,
   },
   header: {
-    fontSize: 26,
+    fontSize: 24,
     fontWeight: 'bold',
     textAlign: 'center',
-    marginBottom: 30,
-    color: '#333',
-  },
-  activeNumber: {
-    color: '#fff',
-  },
-  activeText: {
-    color:'#fff',
+    marginBottom: 20,
+    marginTop:20,
   },
   stepsContainer: {
     flexDirection: 'row',
@@ -136,12 +120,6 @@ const styles = StyleSheet.create({
     borderColor: '#ccc',
     borderRadius: 30,
     backgroundColor: '#f0f0f0',
-  },
-  arrow: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#007AFF',
-    top: 15
   },
   activeStep: {
     backgroundColor: '#007AFF',
@@ -162,11 +140,16 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: '#007AFF',
   },
-  subHeader: {
+  arrow: {
     fontSize: 20,
     fontWeight: 'bold',
-    marginBottom: 15,
-    color: '#333',
+    color: '#007AFF',
+    top: 15
+  },
+  subHeader: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 10,
   },
   input: {
     borderWidth: 1,
@@ -178,38 +161,36 @@ const styles = StyleSheet.create({
   },
   passwordContainer: {
     flexDirection: 'row',
+    alignItems: 'center',
     borderWidth: 1,
     borderColor: '#ddd',
     borderRadius: 5,
+    padding: 5,
+    marginBottom: 15,
     backgroundColor: '#f9f9f9',
   },
-  Passwordinput: {
+  showPassword: {
+    marginLeft: 10,
+    color: '#007AFF',
+  },
+  passwordInput: {
     flex: 1,
     paddingVertical: 10,
-    height: 40,
-  },
-  showPassword: {
-    top: 12,
-    right: 10,
-    color: '#007AFF',
-    fontSize: 14,
   },
   nextButton: {
     backgroundColor: '#007AFF',
-    paddingVertical: 15,
-    borderRadius: 10,
+    borderRadius: 5,
+    padding: 15,
     alignItems: 'center',
     marginTop: 20,
   },
   nextButtonText: {
     color: '#fff',
-    fontSize: 18,
-    fontWeight: 'bold',
+    fontSize: 16,
   },
   errorText: {
     color: 'red',
-    fontSize: 12,
-    marginBottom: 5,
+    marginBottom: 10,
   },
 });
 
