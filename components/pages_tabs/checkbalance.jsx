@@ -9,9 +9,12 @@ const Checkbalance= () => {
     return (
         <ScrollView contentContainerStyle={styles.container}>
             <View style={styles.topcontainer}>
-                <Image source={require('../../assets/images/left-arrow.png')} style={styles.topcontainerimg} onProgress={handlehomepage}/>
+            <TouchableOpacity onPress={handlehomepage}>
+                <Image source={require('../../assets/images/left-arrow.png')} style={styles.topcontainerimg}/>
+                </TouchableOpacity>
                 <Text style={styles.topcontainertext}>Balance</Text>
             </View>
+
         <View style={styles.card}>
         <View style={styles.cardHeader}>
           <Text style={styles.cardLabel}>SAVINGS WALLET</Text>
@@ -30,14 +33,18 @@ const Checkbalance= () => {
     );
 };
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: "#fff",
+    },
     topcontainer: {
         height: 125,
         borderWidth:5,
-        bordertopColor:'#4159fa',
+        bordertopColor:'#007AFF',
         borderLeftColor:'#9fd3fc',
         borderBottomColor:'#9fd3fc',
         borderRightColor:'#9fd3fc',
-        backgroundColor: '#4159fa',
+        backgroundColor: '#007AFF',
         borderBottomLeftRadius: 50,
         borderBottomRightRadius: 50,
     },

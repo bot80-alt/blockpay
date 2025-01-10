@@ -12,9 +12,7 @@ import TransactionScreen from '@/components/pages_tabs/confirmation';
 import Checkbalance from '@/components/pages_tabs/checkbalance';
 import ScanQRPage from '@/components/pages_tabs/qrpage';
 import QRCamera from '@/components/pages_tabs/qrscanner';
-
-//import QrPage from '@/components/pages_tabs/qrpage';
-//import QRScanner from '@/components/pages_tabs/qrscanner';
+import QRCodeGenerator from '@/components/pages_tabs/home_profile';
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from 'react';
@@ -45,6 +43,7 @@ export default function TabOneScreen() {
         <Stack.Screen name={"BALANCE"} component={Checkbalance}/>
         <Stack.Screen name={"SCANQR"}  component={ScanQRPage}/>
         <Stack.Screen name={"CAMERAQR"} component={QRCamera}/>
+        <Stack.Screen name={"HOMEPROFILE"} component={QRCodeGenerator}/>
       </Stack.Navigator>
     </SafeAreaView>
   )

@@ -1,96 +1,114 @@
 import React from 'react';
 import { View, Text, TextInput, Image, ScrollView, TouchableOpacity, StyleSheet, Linking } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation,useRoute } from '@react-navigation/native';
 
 const App = () => {
+  const route=useRoute();
+  const { businessName,
+    email,
+    mobileNumber,
+    password,
+    govtid,
+    idnumber,
+    walletAddress,
+    value}=route.params;
   const navigation = useNavigation();
   const handleTransaction = () => {
       navigation.navigate("TRANSACTION");
   };
   const handleProfile=()=>{
-    navigation.navigate("PROFILE");
+    navigation.navigate("HOMEPROFILE",{
+      businessName, email,mobileNumber,password,govtid,idnumber,walletAddress,value,
+    });
   };
   const handleQr=()=>{
-    navigation.navigate("SCANQR");
+    navigation.navigate("CAMERAQR");
   };
   const handleBalance=()=>{
     navigation.navigate("BALANCE");
   };
   return (
-    <ScrollView style={styles.container}>
-      <View style={styles.topcontainer}>
+    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+      <View style={styles.topContainer}>
         <View style={styles.searchContainer}>
           <TextInput
             style={styles.searchInput}
             placeholder="Pay anyone on crypto"
+            placeholderTextColor="#999"
           />
           <TouchableOpacity onPress={handleProfile}>
-          <Image source={require('../../assets/images/facebook-profile-picture-affects-chances-of-gettin_fr3n.1200.webp')} style={styles.TopProfile}/>
+            <Image
+              source={require('../../assets/images/facebook-profile-picture-affects-chances-of-gettin_fr3n.1200.webp')}
+              style={styles.profileImage}
+            />
           </TouchableOpacity>
         </View>
+
+        {/* Illustration */}
         <View style={styles.illustrationContainer}>
           <Image
             source={require('../../assets/images/homepic 1.png')}
-            style={[styles.illustration, { width: '80%', height: 200 }]}
+            style={styles.illustration}
           />
         </View>
       </View>
-      <View style={[styles.iconContainer, { backgroundColor: '#FFFFFF', marginHorizontal: -20, paddingVertical: 20 }]}>
-        <TouchableOpacity style={styles.iconButton} onPress={handleQr}>
-          <Image source={require('../../assets/images/qr-code.png')} style={styles.icon} />
-          <Text style={[styles.iconText, {color: '#4159fa'}]}>Scan any Crypto QR code</Text>
+      <View style={styles.iconContainer}>
+        <TouchableOpacity style={styles.actionButton} onPress={handleQr}>
+          <Image source={require('../../assets/images/qr-code.png')} style={styles.actionIcon} />
+          <Text style={styles.actionText}>Scan any Crypto QR code</Text>
         </TouchableOpacity>
-        {/* <TouchableOpacity style={styles.bookiconButton}>
-          <Image source={require('../../assets/images/contact-book.png')} style={styles.icon} />
-          <Text style={[styles.iconText, {color: '#4159fa'}]}>Pay Contacts</Text>
-        </TouchableOpacity> */}
-        <TouchableOpacity style={styles.walleticonButton}  onPress={handleBalance}>
-          <Image source={require('../../assets/images/wallet.png')} style={styles.icon}/>
-          <Text style={[styles.iconText, {color: '#4159fa'}]}>Check Balance</Text>
+        <TouchableOpacity style={styles.actionButton} onPress={handleBalance}>
+          <Image source={require('../../assets/images/wallet.png')} style={styles.actionIcon} />
+          <Text style={styles.actionText}>Check Balance</Text>
         </TouchableOpacity>
       </View>
-      <View style={styles.BottomCountainer}>
-      
       <View style={styles.sectionContainer}>
         <Text style={styles.sectionTitle}>People</Text>
-        <View style={styles.profileContainer}>
-          {Array(4).fill().map((_, index) => (
-            <Image
-              key={index}
-              source={require('../../assets/images/facebook-profile-picture-affects-chances-of-gettin_fr3n.1200.webp')}
-              style={styles.profileIcon}
-            />
-          ))}
+        <View style={styles.profileIconsContainer}>
+          {Array(4)
+            .fill()
+            .map((_, index) => (
+              <Image
+                key={index}
+                source={require('../../assets/images/facebook-profile-picture-affects-chances-of-gettin_fr3n.1200.webp')}
+                style={styles.profileIcon}
+              />
+            ))}
         </View>
       </View>
+
       <View style={styles.sectionContainer}>
         <Text style={styles.sectionTitle}>Business</Text>
-        <View style={styles.profileContainer}>
-          {Array(8).fill().map((_, index) => (
-            <Image
-              key={index}
-              source={require('../../assets/images/facebook-profile-picture-affects-chances-of-gettin_fr3n.1200.webp')}
-              style={styles.profileIcon}
-            />
-          ))}
+        <View style={styles.profileIconsContainer}>
+          {Array(8)
+            .fill()
+            .map((_, index) => (
+              <Image
+                key={index}
+                source={require('../../assets/images/facebook-profile-picture-affects-chances-of-gettin_fr3n.1200.webp')}
+                style={styles.profileIcon}
+              />
+            ))}
         </View>
       </View>
-      <Text style={styles.manage}>Manage Your Money</Text>
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.button} onPress={handleTransaction}>
-        <Image source={require('../../assets/images/history.png')} style={styles.historybutton}/>
-          <Text style={styles.historybuttonText}>See Transaction History</Text>
-          <Image source={require('../../assets/images/right-arrow.png')} style={styles.historybutton}/>
+
+      {/* Manage Your Money Section */}
+      <View style={styles.manageMoneyContainer}>
+        <Text style={styles.manageMoneyTitle}>Manage Your Money</Text>
+        <TouchableOpacity style={styles.manageButton} onPress={handleTransaction}>
+          <Image source={require('../../assets/images/history.png')} style={styles.buttonIcon} />
+          <Text style={styles.buttonText}>See Transaction History</Text>
+          <Image source={require('../../assets/images/right-arrow.png')} style={styles.buttonIcon} />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => Linking.openURL('https://coinmarketcap.com/trending-cryptocurrencies/')}>
-        <Image source={require('../../assets/images/location.png')} style={styles.cryptobutton}/>
-          <Text style={styles.cryptobuttonText}>Check Live Crypto Prices</Text>
-          <Image source={require('../../assets/images/right-arrow.png')} style={styles.cryptobutton}/>
+        <TouchableOpacity
+          style={styles.manageButton}
+          onPress={() => Linking.openURL('https://coinmarketcap.com/trending-cryptocurrencies/')}
+        >
+          <Image source={require('../../assets/images/location.png')} style={styles.buttonIcon} />
+          <Text style={styles.buttonText}>Check Live Crypto Prices</Text>
+          <Image source={require('../../assets/images/right-arrow.png')} style={styles.buttonIcon} />
         </TouchableOpacity>
-        </View>
-      
       </View>
-      
     </ScrollView>
   );
 };
@@ -100,72 +118,88 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
-  TopProfile:{
-    width: 40,
-    height: 40,
-    borderRadius:50,
-  },
-  topcontainer: {
-    paddingTop: 25,
-    backgroundColor: '#4159fa',
+  topContainer: {
+    paddingVertical: 30,
+    paddingHorizontal: 20,
+    backgroundColor: '#007AFF',
     borderBottomLeftRadius: 50,
     borderBottomRightRadius: 50,
   },
-  BottomCountainer:{
-    backgroundColor: '#4159fa',
-    borderTopLeftRadius: 50,
-    borderTopRightRadius: 50,
+  iconContainer: {
+    flexDirection: 'row',
+    gap: 20,
+    padding: 20,
   },
-
   searchContainer: {
     flexDirection: 'row',
-    padding: 10,
-    alignSelf: 'center',
-    gap: 10,
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    backgroundColor: '#FFFFFF',
+    borderRadius: 25,
+    paddingHorizontal: 15,
+    paddingVertical: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 3,
+    elevation: 5,
   },
   searchInput: {
-    backgroundColor: '#fff',
-    borderRadius: 25,
-    width: '80%',
-    paddingHorizontal: 20,
-    paddingVertical: 10,
+    flex: 1,
+    fontSize: 16,
+    color: '#333',
+  },
+  profileImage: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
   },
   illustrationContainer: {
     alignItems: 'center',
-    marginVertical: 20,
+    marginTop: 20,
   },
   illustration: {
-    width: 200,
-    height: 200,
+    width: '100%',
+    height: 180,
+    resizeMode: 'contain',
   },
-  iconContainer: {
+  quickActionsContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     marginVertical: 20,
   },
-  iconButton: {
+  actionButton: {
     alignItems: 'center',
+    backgroundColor: '#FFFFFF',
+    borderRadius: 15,
+    padding: 20,
+    width: '48%',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 3,
+    elevation: 5,
   },
-  icon: {
-    width: 50,
-    height: 50,
+  actionIcon: {
+    width: 40,
+    height: 40,
+    marginBottom: 10,
   },
-  iconText: {
-    color: '#fff',
-    marginTop: 10,
-    textAlign: 'center',
+  actionText: {
+    color: '#007AFF',
+    fontWeight: 'bold',
   },
   sectionContainer: {
     marginVertical: 20,
-    paddingHorizontal: 10,
+    paddingHorizontal: 20,
   },
   sectionTitle: {
-    paddingLeft: 10,
-    color: '#fff',
     fontSize: 18,
+    fontWeight: 'bold',
     marginBottom: 10,
+    color: '#007AFF',
   },
-  profileContainer: {
+  profileIconsContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
@@ -173,49 +207,44 @@ const styles = StyleSheet.create({
   profileIcon: {
     width: 50,
     height: 50,
-    margin: 10,
-    borderRadius:50,
-  },
-  buttonContainer: {
-    paddingHorizontal: 10,
-    marginVertical: 20,
-  },
-  manage: {
-    fontSize: 18,
-    color: '#fff',
-    paddingLeft: 10,
-  },
-  button: {
-    flexDirection: 'row',
-    // justifyContent:'space-evenly',
-    gap: 90,
-    backgroundColor: '#fff',
     borderRadius: 25,
-    paddingVertical: 15,
+    margin: 10,
+  },
+  manageMoneyContainer: {
+    paddingHorizontal: 20,
+    marginBottom: 20,
+  },
+  manageMoneyTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 10,
+    color: '#007AFF',
+  },
+  manageButton: {
+    flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'space-between',
+    backgroundColor: '#FFFFFF',
+    borderRadius: 15,
+    paddingVertical: 15,
+    paddingHorizontal: 20,
     marginVertical: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 3,
+    elevation: 5,
   },
-  historybuttonText: {
-    color: '#4159fa',
+  buttonIcon: {
+    width: 24,
+    height: 24,
   },
-  historybutton:{
-    width: 20,
-    height: 20,
-    marginLeft: 10,
-    alignItems:'left',
-    // paddingRight: 10,
-  },
-  cryptobutton:{
-    color: '#4159fa',
-    width: 20,
-    height: 20,
-    marginLeft: 10,
-    alignItems:'left',
+  buttonText: {
+    flex: 1,
+    marginHorizontal: 10,
+    color: '#007AFF',
+    fontWeight: 'bold',
     fontSize: 16,
-
-  },
-  cryptobuttonText: {
-    color: '#4159fa',
   },
 });
 
