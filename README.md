@@ -1,10 +1,18 @@
-# BlockPay
+![bp8](https://github.com/user-attachments/assets/4e23e2a1-108c-4afc-a56e-b844158debb8)# BlockPay
 
 ## Simplifying Cryptocurrency Payments for Businesses
 
 BlockPay is a secure, user-friendly platform that empowers businesses to accept cryptocurrency payments in just three simple steps. Our goal is to bridge the gap between the growing demand for crypto transactions and the challenges businesses face in adopting this new-age payment method.
 
 ---
+
+** BlockPay – Simplifying crypto payments for the world of tomorrow **
+
+<div style="display: flex; gap: 20px; justify-content: center; align-items: center;">
+  <img src="https://github.com/bot80-alt/blockpay/blob/main/assets/images/bp1.jpg" alt="Image 1" width="200">
+  <img src="https://github.com/bot80-alt/blockpay/blob/main/assets/images/bp2.jpg" alt="Image 2" width="200">
+  <img src="https://github.com/bot80-alt/blockpay/blob/main/assets/images/bp8.jpg" alt="Image 3" width="200">
+</div>
 
 ## 🚀 Features
 
@@ -35,6 +43,12 @@ Follow these steps to set up and run the project locally.
 - npm or Yarn
 - React Native CLI
 - MongoDB
+
+  <div style="display: flex; gap: 20px; justify-content: center; align-items: center;">
+     <img src="https://github.com/bot80-alt/blockpay/blob/main/assets/images/bp3.jpg" alt="Image 1" width="200">
+      <img src="https://github.com/bot80-alt/blockpay/blob/main/assets/images/bp4.jpg" alt="Image 2" width="200">
+     <img src="https://github.com/bot80-alt/blockpay/blob/main/assets/images/bp5.jpg" alt="Image 3" width="200">
+   </div>
 
 ### Installation
 
@@ -76,15 +90,10 @@ Small and medium businesses seeking to accept crypto payments.
 Merchants looking for a simple, secure, and affordable crypto solution.
 Businesses wanting to cater to the growing crypto-savvy audience.
 
-➡️ App screenshots
-
-![image](https://github.com/user-attachments/assets/ea9a872c-97cb-4e77-bca3-79ca66b674f4)
-![Screenshot 2025-01-11 173943](https://github.com/user-attachments/assets/b651cc22-efe5-4d81-8a83-8f90cd649fad)
-![Screenshot 2025-01-11 174120](https://github.com/user-attachments/assets/a003d66a-1cb5-4ccb-9d39-4443882289a3)
-![image](https://github.com/user-attachments/assets/05c868ae-8a19-4d74-971b-fa15f39b2a06)
-![image](https://github.com/user-attachments/assets/b8c0dab4-a2b1-4a53-b308-edba66b8edaf)
-
-
+<div style="display: flex; gap: 20px; justify-content: center; align-items: center;">
+  <img src="https://github.com/bot80-alt/blockpay/blob/main/assets/images/bp6.jpg" alt="Image 1" width="200">
+  <img src="https://github.com/bot80-alt/blockpay/blob/main/assets/images/bp7.jpg" alt="Image 2" width="200">
+</div>
 
 
 Developed by Madhanraj M, Madesh, Rakesh, Shyam Sundar
