@@ -1,68 +1,132 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet,handlehomepage,Image } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import React, { useState, useEffect } from "react";
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  StyleSheet,
+  FlatList,
+} from "react-native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import axios from "axios";
+import {useNavigation} from '@react-navigation/native';
 
 const TransferScreen = () => {
   const navigation=useNavigation();
-  const [amountInINR, setAmountInINR] = useState('100');
-  const [amountInBTC, setAmountInBTC] = useState('0.01');
+  const [selectedCoin, setSelectedCoin] = useState("bitcoin");
+  const [inrAmount, setInrAmount] = useState("");
+  const [cryptoAmount, setCryptoAmount] = useState(0);
+  const [cryptoPrices, setCryptoPrices] = useState({});
+  const [loading, setLoading] = useState(true);
 
-  const handleNumberPress = (number) => {
-    setAmountInINR((prev) => prev + number);
-    // Update amountInBTC based on conversion rate
-    const conversionRate = 0.0001; // Example conversion rate
-    setAmountInBTC((parseFloat(amountInINR + number) * conversionRate).toFixed(2));
-  };
-
-  const handlePayNow = () => {
+  const handleTransaction=()=>{
     navigation.navigate("CONFIRMATION");
-  };
-  const handlehomepage = () => {
-    navigation.navigate("ENTRY");
-  };
+  }
+
+  // Fetch live crypto prices
+  useEffect(() => {
+    const fetchPrices = async () => {
+      try {
+        const response = await axios.get(
+          "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,binancecoin,dogecoin&vs_currencies=inr"
+        );
+        setCryptoPrices(response.data);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching crypto prices: ", error);
+      }
+    };
+    fetchPrices();
+  }, []);
+
+  // Recalculate crypto amount
+  useEffect(() => {
+    if (inrAmount && selectedCoin && cryptoPrices[selectedCoin]) {
+      const conversionRate = cryptoPrices[selectedCoin].inr;
+      setCryptoAmount((parseFloat(inrAmount) / conversionRate).toFixed(8));
+    } else {
+      setCryptoAmount(0);
+    }
+  }, [inrAmount, selectedCoin, cryptoPrices]);
+
+  const coins = [
+    { id: "bitcoin", name: "Bitcoin (BTC)", icon: "bitcoin" },
+    { id: "ethereum", name: "Ethereum (ETH)", icon: "ethereum" },
+    { id: "binancecoin", name: "Binance Coin (BNB)", icon: "binance" },
+    { id: "dogecoin", name: "Dogecoin (DOGE)", icon: "dog" },
+  ];
+
+  if (loading) {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.loadingText}>Fetching live crypto prices...</Text>
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
-      <View style={styles.topcontainer}>
-              <TouchableOpacity onPress={handlehomepage}>
-                  <Image source={require('../../assets/images/left-arrow.png')} style={styles.topcontainerimg}/>
-                  </TouchableOpacity>
-                  <Text style={styles.topcontainertext}>Transfer</Text>
-            </View>
-      {/* <Text style={styles.header}>Transfer</Text> */}
-      <View style={styles.middlecontainer}>
-      <Text style={styles.recipient}>To: Madhan84 | Coin: BTC</Text>
-      <Text style={styles.label}>Enter Amount in INR</Text>
-      <TextInput
-        style={styles.input}
-        value={`₹ ${amountInINR}`}
-        editable={false}
-      />
-      </View>
-      <View style={styles.arrowcontainer}>
-      <Image source={require('../../assets/images/up-arrow.png')} style={styles.arrow}/>
-      <Image source={require('../../assets/images/down-arrow.png')} style={styles.arrow}/>
-      </View>
-      
-      <Text style={styles.label}>Amount in Crypto</Text>
-      <Text style={styles.cryptoAmount}>{amountInBTC} BTC</Text>
-      <View style={styles.keypad}>
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 0].map((number) => (
+      {/* Title */}
+      <Text style={styles.title}>Transfer Crypto</Text>
+
+      {/* Select a Coin */}
+      <Text style={styles.subtitle}>Select a Coin</Text>
+      <FlatList
+        data={coins}
+        keyExtractor={(item) => item.id}
+        numColumns={2}
+        columnWrapperStyle={styles.row}
+        renderItem={({ item }) => (
           <TouchableOpacity
-            key={number}
-            style={styles.key}
-            onPress={() => handleNumberPress(number.toString())}
+            style={[
+              styles.coinCard,
+              selectedCoin === item.id && styles.selectedCard,
+            ]}
+            onPress={() => setSelectedCoin(item.id)}
           >
-            <Text style={styles.keyText}>{number}</Text>
+            <MaterialCommunityIcons
+              name={item.icon}
+              size={32}
+              color={selectedCoin === item.id ? "#fff" : "#6200ee"}
+            />
+            <Text
+              style={[
+                styles.coinText,
+                selectedCoin === item.id && styles.selectedCoinText,
+              ]}
+            >
+              {item.name}
+            </Text>
           </TouchableOpacity>
-        ))}
-        <TouchableOpacity style={styles.payButton} onPress={handlePayNow}>
-        <Text style={styles.payButtonText}>Pay now</Text>
-        <Image source={require('../../assets/images/right-arrow.png')} style={styles.payButtonimg}/>
-        
-      </TouchableOpacity>
+        )}
+      />
+
+      {/* Amount Input and Conversion */}
+      <View style={styles.inputContainer}>
+        <Text style={styles.label}>Enter INR Amount</Text>
+        <TextInput
+          style={styles.input}
+          keyboardType="numeric"
+          value={inrAmount}
+          onChangeText={(text) => setInrAmount(text)}
+          placeholder="Enter amount in INR"
+        />
+        <View style={styles.conversionRow}>
+          <Text style={styles.cryptoLabel}>
+            {cryptoAmount} {selectedCoin.toUpperCase()}
+          </Text>
+          <MaterialCommunityIcons
+            name="swap-horizontal-bold"
+            size={24}
+            color="#6200ee"
+          />
+        </View>
       </View>
-      
+
+      {/* Pay Now Button */}
+      <TouchableOpacity style={styles.payButton} onPress={handleTransaction}>
+        <Text style={styles.payButtonText}>Pay Now</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -70,112 +134,101 @@ const TransferScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // padding: 20,
-    backgroundColor: '#f5f5f5',
+    padding: 20,
+    backgroundColor: "#f8f9fa",
+    margin:20,
   },
-  topcontainer: {
-    height: 125,
-    borderWidth:5,
-    bordertopColor:'#007AFF',
-    borderLeftColor:'#9fd3fc',
-    borderBottomColor:'#9fd3fc',
-    borderRightColor:'#9fd3fc',
-    backgroundColor: '#007AFF',
-    borderBottomLeftRadius: 50,
-    borderBottomRightRadius: 50,
-},
-topcontainerimg:{
-    top: 45,
-    left: 20,
-    width: 30,
-    height: 30,
-    borderRadius:50,
-},
-topcontainertext:{
-  top: 15,
-  left: 175,
-  fontSize: 20,
-  color: '#fff',
-},
-middlecontainer:{
-
-},
-  header: {
+  title: {
     fontSize: 24,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    marginVertical: 20,
+    fontWeight: "700",
+    color: "#6200ee",
+    marginBottom: 20,
+    textAlign: "center",
   },
-  recipient: {
+  subtitle: {
+    fontSize: 18,
+    color: "#6200ee",
+    fontWeight: "600",
+    marginBottom: 10,
+    textAlign: "center",
+  },
+  row: {
+    justifyContent: "space-between",
+    marginBottom: 20,
+  },
+  coinCard: {
+    flex: 1,
+    padding: 15,
+    marginHorizontal: 10,
+    backgroundColor: "#fff",
+    borderRadius: 12,
+    alignItems: "center",
+    justifyContent: "center",
+    elevation: 3,
+  },
+  selectedCard: {
+    backgroundColor: "#6200ee",
+    elevation: 6,
+    shadowColor: "#6200ee",
+    shadowOffset: { width: 0, height: 5 },
+    shadowOpacity: 0.5,
+    shadowRadius: 8,
+  },
+  coinText: {
+    marginTop: 10,
     fontSize: 16,
-    textAlign: 'center',
-    marginVertical: 10,
+    color: "#333",
+    fontWeight: "500",
+  },
+  selectedCoinText: {
+    color: "#fff",
+    fontWeight: "700",
+  },
+  inputContainer: {
+    marginTop: 20,
+    backgroundColor: "#fff",
+    padding: 15,
+    borderRadius: 12,
+    elevation: 3,
   },
   label: {
-    left: 125,
-    fontSize: 20,
-    marginVertical: 10,
-    color: '#007bff',
-    fontweight: 'bold',
+    fontSize: 16,
+    color: "#333",
+    marginBottom: 10,
   },
   input: {
-    fontSize: 24,
-    textAlign: 'center',
-    marginVertical: 10,
+    height: 40,
+    borderBottomWidth: 1,
+    borderBottomColor: "#ccc",
+    fontSize: 16,
+    marginBottom: 15,
   },
-  cryptoAmount: {
-    fontSize: 24,
-    textAlign: 'center',
-    marginVertical: 10,
+  conversionRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
-  keypad: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-    marginVertical: 20,
-  },
-  key: {
-    width: 100,
-    padding: 20,
-    margin: 5,
-    backgroundColor: '#e0e0e0',
-    alignItems: 'center',
-    borderRadius: 10,
-    
-  },
-  keyText: {
-    fontSize: 24,
-    color: '#007bff',
-    fontWeight: 'bold',
+  cryptoLabel: {
+    fontSize: 16,
+    color: "#6200ee",
+    fontWeight: "600",
   },
   payButton: {
-    flexDirection: 'row',
-    width: '50%',
-    backgroundColor: '#007bff',
-    padding: 20,
-    margin: 5,
-    borderRadius: 10,
-    alignItems: 'center',
+    marginTop: 30,
+    backgroundColor: "#6200ee",
+    paddingVertical: 15,
+    borderRadius: 12,
+    alignItems: "center",
   },
   payButtonText: {
-    color: '#fff',
     fontSize: 18,
-
+    color: "#fff",
+    fontWeight: "700",
   },
-  payButtonimg:{
-    width: 30,
-    height: 30,
-    left: 70,
-    top: 1,
-  },
-  arrowcontainer:{
-    flexDirection: 'row',
-    justifyContent: 'center',
-    marginVertical: 20,
-  },
-  arrow:{
-    width: 50,
-    height: 50,
+  loadingText: {
+    fontSize: 18,
+    color: "#6200ee",
+    textAlign: "center",
   },
 });
 

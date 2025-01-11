@@ -1,109 +1,138 @@
-import React from 'react';
-import { View, Text, FlatList, StyleSheet, SafeAreaView, StatusBar, TextInput } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import React, { useState, useEffect } from "react";
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, FlatList } from "react-native";
+import axios from "axios";
 
-const transactions = [
-  { id: '1', category: 'Shopping', date: '15 Mar 2019, 8:20 PM', amount: '0.01 BTC', icon: '🛒' },
-  { id: '2', category: 'Medicine', date: '13 Mar 2019, 12:10 AM', amount: '0.01 BTC', icon: '💊' },
-  { id: '3', category: 'Sport', date: '10 Mar 2019, 6:50 PM', amount: '0.01 BTC', icon: '🏋️' },
-  { id: '4', category: 'Shopping', date: '5 Mar 2019, 7:20 PM', amount: '0.01 BTC', icon: '🛒' },
-  { id: '5', category: 'Travel', date: '3 Mar 2019, 5:50 PM', amount: '0.01 BTC', icon: '✈️' },
-  { id: '6', category: 'Sport', date: '10 Feb 2019, 5:20 PM', amount: '0.01 BTC', icon: '🏋️' },
-];
+// Replace with your RouteScan API key
+const API_KEY = "YourApiKeyToken";
+const NETWORK_ID = "43113"; // Avalanche Fuji Testnet
 
-const TransactionItem = ({ category, date, amount, icon }) => (
-  <View style={styles.item}>
-    <Text style={styles.icon}>{icon}</Text>
-    <View style={styles.details}>
-      <Text style={styles.category}>{category}</Text>
-      <Text style={styles.date}>{date}</Text>
-    </View>
-    <Text style={styles.amount}>{amount}</Text>
-  </View>
-);
+const TransactionPage = () => {
+  const [walletAddress, setWalletAddress] = useState("");
+  const [transactions, setTransactions] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-const TransactionHistory = () => {
-    const navigation = useNavigation();
+  const fetchTransactions = async () => {
+    if (!walletAddress) return;
+    setLoading(true);
+    try {
+      const url = `https://api.routescan.io/v2/network/testnet/avalanche/${NETWORK_ID}/etherscan/api?module=account&action=txlist&address=${walletAddress}&startblock=0&endblock=99999999&page=1&offset=10&sort=asc&apikey=${API_KEY}`;
+      const response = await axios.get(url);
+      setTransactions(response.data.result);
+    } catch (error) {
+      console.error("Error fetching transactions:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const renderTransaction = ({ item }) => {
     return (
-    <SafeAreaView style={styles.container}>
-      <StatusBar barStyle="light-content" />
-      <View style={styles.header}>
-        <Text style={styles.headerText}>Your Daily Transactions</Text>
-        <Text style={styles.headerAmount}>₹ 250 | 0.01 BTC</Text>
+      <View style={styles.transactionItem}>
+        <Text style={styles.transactionText}>
+          <Text style={styles.bold}>Transaction Hash:</Text> {item.hash}
+        </Text>
+        <Text style={styles.transactionText}>
+          <Text style={styles.bold}>Block Number:</Text> {item.blockNumber}
+        </Text>
+        <Text style={styles.transactionText}>
+          <Text style={styles.bold}>Value:</Text> {item.value} AVAX
+        </Text>
+        <Text style={styles.transactionText}>
+          <Text style={styles.bold}>Date:</Text> {new Date(item.timeStamp * 1000).toLocaleString()}
+        </Text>
       </View>
-      <TextInput style={styles.searchBar} placeholder="Search" placeholderTextColor="#888" />
-      <FlatList
-        data={transactions}
-        renderItem={({ item }) => <TransactionItem {...item} />}
-        keyExtractor={item => item.id}
-        contentContainerStyle={styles.list}
+    );
+  };
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>Wallet Transactions (Avalanche Fuji Testnet)</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Enter Wallet Address"
+        value={walletAddress}
+        onChangeText={setWalletAddress}
       />
-    </SafeAreaView>
+      <TouchableOpacity style={styles.button} onPress={fetchTransactions}>
+        <Text style={styles.buttonText}>Get Transactions</Text>
+      </TouchableOpacity>
+      {loading ? (
+        <Text style={styles.loadingText}>Loading...</Text>
+      ) : (
+        <FlatList
+          data={transactions}
+          renderItem={renderTransaction}
+          keyExtractor={(item) => item.hash}
+          contentContainerStyle={styles.transactionList}
+        />
+      )}
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#1E1E1E',
-  },
-  header: {
-    backgroundColor: '#4A90E2',
     padding: 20,
-    borderBottomLeftRadius: 20,
-    borderBottomRightRadius: 20,
-    alignItems: 'center',
+    backgroundColor: "#f8f9fa",
+    margin:20,
   },
-  headerText: {
-    color: '#FFFFFF',
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-  headerAmount: {
-    color: '#FFFFFF',
+  title: {
     fontSize: 24,
-    fontWeight: 'bold',
-    marginTop: 10,
+    fontWeight: "700",
+    color: "#6200ee",
+    textAlign: "center",
+    marginBottom: 20,
   },
-  searchBar: {
-    backgroundColor: '#333',
-    color: '#FFF',
-    borderRadius: 10,
-    padding: 10,
-    margin: 20,
+  input: {
+    height: 50,
+    borderColor: "#ccc",
+    borderWidth: 1,
+    borderRadius: 8,
+    paddingHorizontal: 15,
+    fontSize: 16,
+    marginBottom: 20,
   },
-  list: {
-    paddingHorizontal: 20,
-  },
-  item: {
-    flexDirection: 'row',
-    alignItems: 'center',
+  button: {
+    backgroundColor: "#6200ee",
     padding: 15,
-    backgroundColor: '#2A2A2A',
-    borderRadius: 10,
+    borderRadius: 8,
+    alignItems: "center",
+    marginBottom: 20,
+  },
+  buttonText: {
+    fontSize: 18,
+    color: "#fff",
+    fontWeight: "600",
+  },
+  transactionList: {
+    paddingBottom: 20,
+  },
+  transactionItem: {
+    backgroundColor: "#fff",
+    padding: 15,
+    borderRadius: 8,
     marginBottom: 10,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
   },
-  icon: {
-    fontSize: 24,
-    marginRight: 15,
-  },
-  details: {
-    flex: 1,
-  },
-  category: {
-    color: '#FFF',
+  transactionText: {
     fontSize: 16,
-    fontWeight: 'bold',
+    color: "#333",
+    marginBottom: 5,
   },
-  date: {
-    color: '#888',
-    fontSize: 14,
+  bold: {
+    fontWeight: "bold",
+    color: "#6200ee",
   },
-  amount: {
-    color: '#FFF',
-    fontSize: 16,
-    fontWeight: 'bold',
+  loadingText: {
+    fontSize: 18,
+    color: "#6200ee",
+    textAlign: "center",
+    marginTop: 20,
   },
 });
 
-export default TransactionHistory;
+export default TransactionPage;

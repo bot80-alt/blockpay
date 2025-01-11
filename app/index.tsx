@@ -10,8 +10,7 @@ import UserSignup from '@/components/pages_tabs/usersignup';
 import TransactionHistory from '@/components/pages_tabs/transaction_history';
 import TransferScreen from '@/components/pages_tabs/transfer';
 import TransactionScreen from '@/components/pages_tabs/confirmation';
-import Checkbalance from '@/components/pages_tabs/checkbalance';
-import ScanQRPage from '@/components/pages_tabs/qrpage';
+import CheckBalance from '@/components/pages_tabs/checkbalance';
 import QRCamera from '@/components/pages_tabs/qrscanner';
 import QRCodeGenerator from '@/components/pages_tabs/home_profile';
 
@@ -41,8 +40,7 @@ export default function TabOneScreen() {
         <Stack.Screen name={"USERSIGNUP"} component={UserSignup}/>
         <Stack.Screen name={"TRANSFER"} component={TransferScreen}/>
         <Stack.Screen name={"CONFIRMATION"} component={TransactionScreen}/>
-        <Stack.Screen name={"BALANCE"} component={Checkbalance}/>
-        <Stack.Screen name={"SCANQR"}  component={ScanQRPage}/>
+        <Stack.Screen name={"BALANCE"} component={CheckBalance}/>
         <Stack.Screen name={"CAMERAQR"} component={QRCamera}/>
         <Stack.Screen name={"HOMEPROFILE"} component={QRCodeGenerator}/>
         <Stack.Screen name={"USERSIGNUPPAGE"} component={UserSignPage}/>

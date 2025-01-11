@@ -4,22 +4,12 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, Linking,Scr
 import { useNavigation, useRoute } from '@react-navigation/native';
 // import { ScrollView } from 'react-native-gesture-handler';
 
-const CryptoSetup = () => {
-  const route=useRoute();
+const CryptoSetup = ({route}) => {
   const {businessName,email,mobileNumber,password,govtid,idnumber}=route.params;
 
   const navigation = useNavigation();
   const handleEntry = () => {
-      navigation.navigate("ENTRY",{
-        businessName,
-        email,
-        mobileNumber,
-        password,
-        govtid,
-        idnumber,
-        walletAddress,
-        value,
-      });
+      navigation.navigate("ENTRY",{businessName,email,mobileNumber,password,govtid,idnumber,walletAddress});
   };
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
@@ -60,21 +50,33 @@ const CryptoSetup = () => {
         onChangeText={setWalletAddress}
       />
       <DropDownPicker
-      placeholder="Select your Crypto Coins"
-      open={open}
-      style={styles.input}
-      value={value}
-      items={items}
-      setOpen={setOpen}
-      setValue={setValue}
-      setItems={setItems}
-      onChangeItem={(item) => {
-        if (!items.some(i => i.value === item.value)) {
-          setItems([...items, item]);
-        }
-      }}
-    />
-      <Text>Added Crypto Coins</Text>
+        placeholder="Select your Crypto Coins"
+        open={open}
+        style={styles.input}
+        value={value}
+        items={items}
+        setOpen={setOpen}
+        setValue={(val) => {
+          if (val && val.length === 0) {
+            alert('Please fill in all required fields.');
+            return;
+          }
+          setValue(val);
+        }}
+        setItems={setItems}
+        multiple={true}
+        min={1}
+        max={items.length-1}
+        mode="BADGE"
+      />
+      <View style={{marginTop: 10}}>
+        <Text style={{fontSize: 16, fontWeight: '500'}}>Added Crypto Coins:</Text>
+        {value && value.map((coin, index) => (
+          <Text key={index} style={{marginLeft: 10, marginTop: 5}}>
+            • {items.find(item => item.value === coin)?.label}
+          </Text>
+        ))}
+      </View>
       <TouchableOpacity>
         <Text style={styles.link}>Want to Pick Top Coins ? <Text onPress={() => Linking.openURL('https://coinmarketcap.com/trending-cryptocurrencies/')} style={styles.headlink}>Know More →</Text></Text>
       </TouchableOpacity>

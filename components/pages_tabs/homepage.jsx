@@ -4,22 +4,20 @@ import { useNavigation,useRoute } from '@react-navigation/native';
 
 const App = () => {
   const route=useRoute();
-  const { businessName,
-    email,
-    mobileNumber,
-    password,
-    govtid,
-    idnumber,
-    walletAddress,
-    value}=route.params;
+  // const { businessName,
+  //   email,
+  //   mobileNumber,
+  //   password,
+  //   govtid,
+  //   idnumber,
+  //   walletAddress,
+  //   value}=route.params;
   const navigation = useNavigation();
   const handleTransaction = () => {
       navigation.navigate("TRANSACTION");
   };
   const handleProfile=()=>{
-    navigation.navigate("HOMEPROFILE",{
-      businessName, email,mobileNumber,password,govtid,idnumber,walletAddress,value,
-    });
+    navigation.navigate("HOMEPROFILE");
   };
   const handleQr=()=>{
     navigation.navigate("CAMERAQR");

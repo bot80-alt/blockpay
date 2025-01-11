@@ -39,32 +39,10 @@ const ProfilePage = () => {
         <Text style={styles.label}>UPI ID</Text>
         <Text style={styles.infoText}></Text>
       </View>
-      <View style={styles.cryptoContainer}>
-        <Text style={styles.label}>Select Crypto Coin to Pay</Text>
-        <View style={styles.cryptoIcons}>
-          <Image
-            source={{ uri: 'https://cryptologos.cc/logos/bitcoin-btc-logo.png' }} // Replace with actual image URL
-            style={styles.cryptoIcon}
-          />
-          <Image
-            source={{ uri: 'https://cryptologos.cc/logos/ethereum-eth-logo.png' }} // Replace with actual image URL
-            style={styles.cryptoIcon}
-          />
-          <Image
-            source={{ uri: 'https://cryptologos.cc/logos/solana-sol-logo.png' }} // Replace with actual image URL
-            style={styles.cryptoIcon}
-          />
-          <Image
-            source={{ uri: 'https://cryptologos.cc/logos/solana-sol-logo.png' }} // Replace with actual image URL
-            style={styles.cryptoIcon}
-          />
-        </View>
         <TouchableOpacity style={styles.payButton} onPress={handleTransfer}>
         <Text style={styles.payButtonText}>Pay Now</Text>
       </TouchableOpacity>
-      </View>
-      
-      </ScrollView>
+    </ScrollView>  
   );
 };
 
