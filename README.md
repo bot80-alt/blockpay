@@ -78,12 +78,11 @@ Businesses wanting to cater to the growing crypto-savvy audience.
 
 ➡️ App screenshots
 
-Starting page : 
 ![image](https://github.com/user-attachments/assets/ea9a872c-97cb-4e77-bca3-79ca66b674f4)
-Signup process : ![Screenshot 2025-01-11 173943](https://github.com/user-attachments/assets/b651cc22-efe5-4d81-8a83-8f90cd649fad)
-Home page : ![Screenshot 2025-01-11 174120](https://github.com/user-attachments/assets/a003d66a-1cb5-4ccb-9d39-4443882289a3)
-Wallet page : ![image](https://github.com/user-attachments/assets/05c868ae-8a19-4d74-971b-fa15f39b2a06)
-Transaction History page : ![image](https://github.com/user-attachments/assets/b8c0dab4-a2b1-4a53-b308-edba66b8edaf)
+![Screenshot 2025-01-11 173943](https://github.com/user-attachments/assets/b651cc22-efe5-4d81-8a83-8f90cd649fad)
+![Screenshot 2025-01-11 174120](https://github.com/user-attachments/assets/a003d66a-1cb5-4ccb-9d39-4443882289a3)
+![image](https://github.com/user-attachments/assets/05c868ae-8a19-4d74-971b-fa15f39b2a06)
+![image](https://github.com/user-attachments/assets/b8c0dab4-a2b1-4a53-b308-edba66b8edaf)
 
 
 
