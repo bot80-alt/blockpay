@@ -1,50 +1,79 @@
-# Welcome to your Expo app 👋
+# BlockPay
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+## Simplifying Cryptocurrency Payments for Businesses
 
-## Get started
+BlockPay is a secure, user-friendly platform that empowers businesses to accept cryptocurrency payments in just three simple steps. Our goal is to bridge the gap between the growing demand for crypto transactions and the challenges businesses face in adopting this new-age payment method.
 
-1. Install dependencies
+---
 
+## 🚀 Features
+
+- **3-Step Setup**: Streamlined onboarding to start accepting crypto payments.
+- **Multi-Currency Support**: Accept popular cryptocurrencies like AVAX, USDT, LINK, TUSD, and BCUT.
+- **Secure Transactions**: Robust security to protect businesses from fraud and hacks.
+- **Seamless Integration**: Easy-to-use interface designed for businesses of all sizes.
+- **Customizable Options**: Add and manage preferred crypto coins effortlessly.
+
+---
+
+## 🛠️ Tech Stack
+
+- **Frontend**: React Native for a seamless cross-platform experience.
+- **Backend**: Node.js and Express for fast and reliable server-side operations.
+- **Blockchain**: Smart contracts for secure and transparent payment processing.
+- **Database**: MongoDB for efficient storage and management of user and transaction data.
+
+---
+
+## 📖 Getting Started
+
+Follow these steps to set up and run the project locally.
+
+### Prerequisites
+
+- Node.js
+- npm or Yarn
+- React Native CLI
+- MongoDB
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/blockpay.git
+2. Navigate to the project directory:
+   ```bash
+   cd blockpay
+
+3. Install dependencies:
    ```bash
    npm install
-   ```
-
-2. Start the app
-
+   
+4. Set up the environment variables: Create a .env file in the root directory and configure the following:
    ```bash
-    npx expo start
-   ```
+   MONGO_URI=<your-mongodb-uri>
+   PORT=<server-port>
+   SECRET_KEY=<your-secret-key>
 
-In the output, you'll find options to open the app in a
+5. Start the development server:
+   ```bash
+   npm start
+   
+6. Run the mobile app:
+   ```bash
+   npx react-native run-android # For Android
+   npx react-native run-ios     # For iOS
+   
+📄 Project Workflow
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+Business Onboarding: Businesses sign up and provide basic details.
+Identity Verification: Secure KYC verification for trust and transparency.
+Crypto Setup: Businesses configure their crypto wallet and add supported coins.
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+🎯 Use Cases
 
-## Get a fresh project
+Small and medium businesses seeking to accept crypto payments.
+Merchants looking for a simple, secure, and affordable crypto solution.
+Businesses wanting to cater to the growing crypto-savvy audience.
 
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Developed by Madhanraj M, Madesh, Rakesh, Shyam Sundar
