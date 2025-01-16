@@ -1,23 +1,19 @@
 import React from 'react';
 import { View, Text, TextInput, Image, ScrollView, TouchableOpacity, StyleSheet, Linking } from 'react-native';
 import { useNavigation,useRoute } from '@react-navigation/native';
-
+import  LottieView  from 'lottie-react-native'
 const App = () => {
   const route=useRoute();
-  // const { businessName,
-  //   email,
-  //   mobileNumber,
-  //   password,
-  //   govtid,
-  //   idnumber,
-  //   walletAddress,
-  //   value}=route.params;
+  const { businessName,
+    email,
+    walletAddress,
+    }=route.params;
   const navigation = useNavigation();
   const handleTransaction = () => {
       navigation.navigate("TRANSACTION");
   };
   const handleProfile=()=>{
-    navigation.navigate("HOMEPROFILE");
+    navigation.navigate("HOMEPROFILE",{businessName,email,walletAddress});
   };
   const handleQr=()=>{
     navigation.navigate("CAMERAQR");
@@ -28,7 +24,7 @@ const App = () => {
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
       <View style={styles.topContainer}>
-        <View style={styles.searchContainer}>
+        <View style={[styles.searchContainer, { marginTop: 20 }]}>
           <TextInput
             style={styles.searchInput}
             placeholder="Pay anyone on crypto"
@@ -43,9 +39,12 @@ const App = () => {
         </View>
 
         {/* Illustration */}
+      
         <View style={styles.illustrationContainer}>
-          <Image
-            source={require('../../assets/images/homepic 1.png')}
+          <LottieView
+            source={require('../../assets/animations/Animation - 1736916843612.json')}
+            autoPlay
+            loop = {true}
             style={styles.illustration}
           />
         </View>
@@ -78,7 +77,7 @@ const App = () => {
       <View style={styles.sectionContainer}>
         <Text style={styles.sectionTitle}>Business</Text>
         <View style={styles.profileIconsContainer}>
-          {Array(8)
+          {Array(4)
             .fill()
             .map((_, index) => (
               <Image
@@ -158,7 +157,7 @@ const styles = StyleSheet.create({
   },
   illustration: {
     width: '100%',
-    height: 180,
+    height: 300,
     resizeMode: 'contain',
   },
   quickActionsContainer: {

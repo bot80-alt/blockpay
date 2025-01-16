@@ -84,7 +84,20 @@ const Signup = () => {
       </TouchableOpacity>
       
       <TouchableOpacity
-        style={styles.nextButton}
+        style={[styles.nextButton, {
+          backgroundColor: '#007AFF',
+          borderRadius: 25,
+          paddingVertical: 12,
+          paddingHorizontal: 30,
+          elevation: 5, // Android shadow
+          shadowColor: '#000', // iOS shadow
+          shadowOffset: {
+            width: 0,
+            height: 2,
+          },
+          shadowOpacity: 0.25,
+          shadowRadius: 3.84,
+        }]}
         onPress={() => {
           if (!businessName || !email || !mobileNumber || !password) {
             alert('Please fill all the required fields');
@@ -93,7 +106,11 @@ const Signup = () => {
           }
         }}
       >
-        <Text style={styles.nextButtonText}>Next</Text>
+        <Text style={[styles.nextButtonText, {
+          color: '#fff',
+          fontSize: 16,
+          fontWeight: '600'
+        }]}>Next</Text>
       </TouchableOpacity>
     </View>
     </View>
@@ -194,7 +211,8 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     padding: 15,
     alignItems: 'center',
-    marginTop: 20,
+    marginTop: 350,
+    
   },
   nextButtonText: {
     color: '#fff',

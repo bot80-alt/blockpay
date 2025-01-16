@@ -3,7 +3,7 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, Linking,ScrollView } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 // import { ScrollView } from 'react-native-gesture-handler';
-
+import LottieView from 'lottie-react-native';
 const CryptoSetup = ({route}) => {
   const {businessName,email,mobileNumber,password,govtid,idnumber}=route.params;
 
@@ -80,15 +80,40 @@ const CryptoSetup = ({route}) => {
       <TouchableOpacity>
         <Text style={styles.link}>Want to Pick Top Coins ? <Text onPress={() => Linking.openURL('https://coinmarketcap.com/trending-cryptocurrencies/')} style={styles.headlink}>Know More →</Text></Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.finishButton} onPress={() => {
-            if (!walletAddress || !value
-            ) {
-              alert('Please fill in all required fields.');
-            } else {
-              handleEntry();
-            }
-          }}>
-        <Text style={styles.finishButtonText}>Finish Now</Text>
+      <View>
+        <LottieView 
+        source={require ('../../assets/animations/Animation - 1736915214227.json')} 
+        autoPlay loop ={true}
+        style = {styles.illustration} 
+        />
+      </View>
+      <TouchableOpacity 
+        style={[styles.finishButton, {
+          backgroundColor: '#007AFF',
+          borderRadius: 25,
+          paddingVertical: 12,
+          paddingHorizontal: 30,
+          elevation: 5,
+          shadowColor: '#000',
+          shadowOffset: {
+            width: 0,
+            height: 2,
+          },
+          shadowOpacity: 0.25,
+          shadowRadius: 3.84,
+        }]} 
+        onPress={() => {
+          if (!walletAddress || !value) {
+            alert('Please fill in all required fields.');
+          } else {
+            handleEntry();
+          }
+        }}>
+        <Text style={[styles.finishButtonText, {
+          color: '#fff',
+          fontSize: 16,
+          fontWeight: '600'
+        }]}>Finish Now</Text>
       </TouchableOpacity>
     </View>
     </View>
@@ -137,6 +162,12 @@ const styles = StyleSheet.create({
     width:50,
     textAlign: 'center',
     marginBottom: 5,
+  },
+  illustration: {
+    width: '100%',
+    height: 200,
+    resizeMode: 'contain',
+    marginTop: 200,
   },
   stepNumber: {
     fontSize: 18,
@@ -211,6 +242,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
+    marginTop:50,
   },
   finishButtonText: {
     color: '#fff',

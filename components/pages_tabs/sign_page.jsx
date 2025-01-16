@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image, Button } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import LottieView from 'lottie-react-native';
 
 const SignPageScreen = () => {
     const navigation = useNavigation();
@@ -18,8 +19,10 @@ const SignPageScreen = () => {
             <Text style={styles.headerText}>
                 With Blockpay, Crypto is not just a Currency - it's a lifestyle
             </Text>
-            <Image
-                source={require('../../assets/images/rb_2148298985 1.png')}
+            <LottieView
+                source={require('../../assets/animations/Animation - 1736917960056.json')}
+                    autoPlay loop = {true}
+                
                 style={styles.image}
             />
             <View style={styles.toggleContainer}>

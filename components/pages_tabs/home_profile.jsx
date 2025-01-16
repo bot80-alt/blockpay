@@ -1,63 +1,53 @@
-import React from 'react';
-import { View, Text, TextInput, Button, StyleSheet, TouchableOpacity } from 'react-native';
+import React, { useRef } from 'react';
+import { View, Text, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import QRCode from 'react-native-qrcode-svg';
-import {useRoute,useNavigation} from '@react-navigation/native';
+import { useRoute, useNavigation } from '@react-navigation/native';
+import { captureRef } from 'react-native-view-shot';
+import Share from 'react-native-share';
 
 const QRCodeGenerator = () => {
-  const navigation=useNavigation();
-  const handlePr=()=>{
-    navigation.navigate("PROFILE");
-  }
-    const route = useRoute();
-    // const { businessName,
-    //   email,
-    //   mobileNumber,
-    //   password,
-    //   govtid,
-    //   idnumber,
-    //   walletAddress,
-    //   value} = route.params;
-  
+  const navigation = useNavigation();
+  const route = useRoute();
+  const qrCodeRef = useRef(); // Ref for the QR Code
+
+  const {
+    businessName,
+    email,
+    upiID = businessName.concat(Math.random().toString(12).slice(10)),
+    walletAddress,
+  } = route.params;
+
+  const handleShareQRCode = async () => {
+    try {
+      const uri = await captureRef(qrCodeRef.current, {
+        format: 'png',
+        quality: 1.0,
+      });
+
+      await Share.open({
+        title: 'Share QR Code',
+        message: 'Here is your QR Code',
+        url: uri,
+      });
+    } catch (error) {
+      console.error(error);
+      Alert.alert('Error', 'Failed to share QR Code');
+    }
+  };
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>BusinessName: </Text>
-      <Text style={styles.username}>Email: </Text>
-      <Text style={styles.wallet}>Wallet Address: </Text>
-      <Text style={styles.upi}>UPI ID: </Text>
+      <Text style={styles.title}>BusinessName : {businessName}</Text>
+      <Text style={styles.username}>Email : {email}</Text>
+      <Text style={styles.wallet}>Wallet Address : {walletAddress}</Text>
+      <Text style={styles.upi}>UPI ID : {upiID}</Text>
 
-      /*<View style={styles.qrCodeContainer}>
-        <QRCode
-          value='value'
-          size={200}
-        />
+      <View style={styles.qrCodeContainer} ref={qrCodeRef}>
+        <QRCode value={walletAddress} size={200} />
       </View>
 
-      <TouchableOpacity
-        style={styles.button}
-        onPress={handlePr}
-          
-          // qrRef.toDataURL((data) => {
-            
-          //   const byteString = atob(data.split(',')[1]);
-          //   const mimeString = data.split(',')[0].split(':')[1].split(';')[0];
-          //   const ab = new ArrayBuffer(byteString.length);
-          //   const ia = new Uint8Array(ab);
-          //   for (let i = 0; i < byteString.length; i++) {
-          //     ia[i] = byteString.charCodeAt(i);
-          //   }
-          //   const blob = new Blob([ab], { type: mimeString });
-            
-          //   // Create download link
-          //   const url = URL.createObjectURL(blob);
-          //   const link = document.createElement('a');
-          //   link.href = url;
-          //   link.download = 'qrcode.png';
-          //   document.body.appendChild(link);
-          //   link.click();
-          //   document.body.removeChild(link);
-          //   URL.revokeObjectURL(url);
-      >
-        <Text style={styles.buttonText}>Download QR Code</Text>
+      <TouchableOpacity style={styles.button} onPress={handleShareQRCode}>
+        <Text style={styles.buttonText}>Share QR Code</Text>
       </TouchableOpacity>
     </View>
   );
@@ -90,10 +80,17 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   button: {
-    marginTop: 20,
-    backgroundColor: '#007bff',
-    padding: 10,
-    borderRadius: 5,
+    backgroundColor: '#007AFF',
+    borderRadius: 15,
+    paddingVertical: 15,
+    paddingHorizontal: 10,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+    marginTop: 100,
   },
   buttonText: {
     color: 'white',

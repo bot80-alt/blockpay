@@ -36,3 +36,5 @@ useExpoModules()
 
 include ':app'
 includeBuild(new File(["node", "--print", "require.resolve('@react-native/gradle-plugin/package.json', { paths: [require.resolve('react-native/package.json')] })"].execute(null, rootDir).text.trim()).getParentFile())
+include ':react-native-fs'
+project(':react-native-fs').projectDir = new File(settingsDir, '../node_modules/react-native-fs/android')

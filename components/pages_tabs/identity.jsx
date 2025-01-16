@@ -57,7 +57,20 @@ const BlockPayStep2 = () => {
       />
 
       <TouchableOpacity
-        style={styles.nextButton}
+        style={[styles.nextButton, {
+          backgroundColor: '#007AFF',
+          borderRadius: 25,
+          paddingVertical: 12,
+          paddingHorizontal: 30,
+          elevation: 5, // Android shadow
+          shadowColor: '#000', // iOS shadow
+          shadowOffset: {
+            width: 0,
+            height: 2,
+          },
+          shadowOpacity: 0.25,
+          shadowRadius: 3.84,
+        }]}
         onPress={() => {
           if (!govtid || !idnumber) {
             alert('Please fill all the required fields');
@@ -66,7 +79,11 @@ const BlockPayStep2 = () => {
           }
         }}
       >
-        <Text style={styles.nextButtonText}>Next</Text>
+        <Text style={[styles.nextButtonText, {
+          color: '#fff',
+          fontSize: 16,
+          fontWeight: '600'
+        }]}>Next</Text>
       </TouchableOpacity>
     </View>
   </View>
@@ -160,7 +177,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     paddingVertical: 15,
     alignItems: 'center',
-    marginTop: 30,
+    marginTop: 540,
   },
   // nextButton: {
   //   backgroundColor: '#007AFF',

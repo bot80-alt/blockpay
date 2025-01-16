@@ -2,7 +2,7 @@ package com.anonymous.blockpay1
 
 import android.app.Application
 import android.content.res.Configuration
-
+import com.rnfs.RNFSPackage
 import com.facebook.react.PackageList
 import com.facebook.react.ReactApplication
 import com.facebook.react.ReactNativeHost
@@ -54,4 +54,7 @@ class MainApplication : Application(), ReactApplication {
     super.onConfigurationChanged(newConfig)
     ApplicationLifecycleDispatcher.onConfigurationChanged(this, newConfig)
   }
+  override fun getPackages(): List<ReactPackage> {
+    return listOf(MainReactPackage(), RNFSPackage())
+}
 }
