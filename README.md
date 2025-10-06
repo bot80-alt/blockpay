@@ -1,4 +1,4 @@
-## Simplifying Cryptocurrency Payments for Businesses
+## Simplifying Cryptocurrency Payments for Businesse
 
 BlockPay is a secure, user-friendly platform that empowers businesses to accept cryptocurrency payments in just three simple steps. Our goal is to bridge the gap between the growing demand for crypto transactions and the challenges businesses face in adopting this new-age payment method.
 
